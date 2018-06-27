@@ -5,7 +5,7 @@ class Model{
 	private $user = "root";
   //private $password= "simplonco";
 	private $password= "";
-	private $dbname= "sheeks_ecommerce";
+	private $dbname= "e_commerce";
 	private $host= "localhost";
 	private $port= 8088;
 	public function connect(){
