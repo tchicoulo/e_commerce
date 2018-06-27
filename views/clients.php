@@ -1,4 +1,6 @@
 <?php
+require_once "views/navbar.php";
+
 // Formulaire d'ajout d'un utilisateur
 echo '<form method="post" action="clients" enctype="multipart/form-data">
 <fieldset><legend>Ajout Client</legend>
