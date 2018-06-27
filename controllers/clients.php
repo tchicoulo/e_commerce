@@ -2,15 +2,30 @@
 
 require_once "models/clients.php";
 
-if(isset($_POST['ajout'])){
+// Condition ternaire pour affecter les valeur envoyer via la methode POST, on leur affecte une valeur par défaut le cas échéant
+$id = (isset($_POST['id'])) ?  $_POST['id'] : 0;
+$nom_client = (isset($_POST['nom_client'])) ?  $_POST['nom_client'] : 'default';
 
-	$clients =new ClientsModel(['id' => 0 ,'nom_client' => $_POST[''], 'mot_de_passe' => '', 'civilite' => '', 'prenom' => '', 'nom' => '', 'adresse' => '', 'telephone' => '', 'email' => '']);
-	$ClientsListView= $clients->getAll();
+// Création d'un objet ClientsModel
+$client =new ClientsModel(['id' => $id ,'nom_client' => $nom_client, 'mot_de_passe' => '', 'civilite' => '', 'prenom' => '', 'nom' => '', 'adresse' => '', 'telephone' => '', 'email' => '']);
 
+if(isset($_POST['add'])){	 // Ajout d'un utilisateur
+	$result = $client->create($client);
 }
 
-$clients =new ClientsModel(['id' => 0 ,'nom_client' => '', 'mot_de_passe' => '', 'civilite' => '', 'prenom' => '', 'nom' => '', 'adresse' => '', 'telephone' => '', 'email' => '']);
-$ClientsListView= $clients->getAll();
+else if(isset($_POST['delete'])){	// Suppression d'un utilisateur
+	$result = $client->delete((int)$_POST['id']);
+}
+
+else if(isset($_POST['update'])){ // Mise à jour d'un utilisateur
+	$result = $client->update($client);
+}
+
+else if(isset($_POST['search'])){
+	$searchedClient = $client->get($nom_client);
+}
+
+$ClientsListView= $client->getAll();
 
 $content = "views/clients.php";
 require_once "views/layout.php";

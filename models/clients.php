@@ -12,7 +12,7 @@ class ClientsModel extends Model {
 	private $nom;
 	private $adresse;
 	private $telephone;
-  	private $email;
+	private $email;
 
 	// CONSTRUCTEUR //
 	public function __construct (array $donnees){
@@ -33,7 +33,15 @@ class ClientsModel extends Model {
 
 		$db=parent::connect();
 
-		$sql= "INSERT INTO utilisateurs SET nom_client = :nom_client, mot_de_passe = :mot_de_passe, civilite = :civilite, prenom = :prenom, nom = :nom, adresse = :adresse, telephone = :telephone, email = :email";
+		// On teste d'abord si l'utilisateur existe déjà ou si il est vide
+		if($this->exists($client->nom_client())){
+			return '<p class="red">Le nom d\'utilisateur '.$client->nom_client().' est déjà utilisé.</p>';
+		}
+		elseif($client->nom_client() == ''){
+			return '<p class="red">Le nom d\'utilisateur est vide.</p>';
+		}
+
+		$sql= "INSERT INTO client SET nom_client = :nom_client, mot_de_passe = :mot_de_passe, civilite = :civilite, prenom = :prenom, nom = :nom, adresse = :adresse, telephone = :telephone, email = :email";
 		$query= $db -> prepare ($sql);
 		$query->bindValue(':nom_client', $client->nom_client());
 		$query->bindValue(':mot_de_passe', $client->mot_de_passe());
@@ -42,18 +50,32 @@ class ClientsModel extends Model {
 		$query->bindValue(':nom', $client->nom());
 		$query->bindValue(':adresse', $client->adresse());
 		$query->bindValue(':telephone', $client->telephone());
-    	$query->bindValue(':email', $client->email());
+		$query->bindValue(':email', $client->email());
 
-		$query -> execute ();
-		return $query;
+		$result = $query -> execute ();
+
+		if($result){	// Si $result est vrai alors la requête c'est bien déroulé
+			return '<p class="green">L\'utilisateur '.$client->nom_client().' à bien été ajouté.</p>';
+		}
+		else{
+			return '<p class="red">Echec lors de l\'ajout de l\'utilisateur '.$client->nom_client().'.</p>';
+		}
 	}
 
 	//UPDATE
-	public function update(clientModel $client){
+	public function update(ClientsModel $client){
 
 		$db=parent::connect();
 
-		$sql= "UPDATE utilisateurs SET nom_client = :nom_client, mot_de_passe = :mot_de_passe, civilite = :civilite, prenom = :prenom, nom = :nom, adresse = :adresse, telephone = :telephone, email = :email";
+		// On teste d'abord si l'utilisateur existe déjà ou si il est vide
+		if($this->exists($client->nom_client())){
+			return '<p class="red">Le nom d\'utilisateur '.$client->nom_client().' est déjà utilisé.</p>';
+		}
+		elseif($client->nom_client() == ''){
+			return '<p class="red">Le nom d\'utilisateur est vide.</p>';
+		}
+
+		$sql= "UPDATE client SET nom_client = :nom_client, mot_de_passe = :mot_de_passe, civilite = :civilite, prenom = :prenom, nom = :nom, adresse = :adresse, telephone = :telephone, email = :email WHERE id=".$client->id();
 		$query= $db -> prepare ($sql);
 		$query->bindValue(':nom_client', $client->nom_client());
 		$query->bindValue(':mot_de_passe', $client->mot_de_passe());
@@ -62,13 +84,33 @@ class ClientsModel extends Model {
 		$query->bindValue(':nom', $client->nom());
 		$query->bindValue(':adresse', $client->adresse());
 		$query->bindValue(':telephone', $client->telephone());
-    	$query->bindValue(':email', $client->email());
+		$query->bindValue(':email', $client->email());
 
-		$query -> execute ();
-		return $query;
+		$result = $query -> execute ();
+
+		if($result){	// Si $result est vrai alors la requête c'est bien déroulé
+			return '<p class="green">L\'utilisateur '.$client->nom_client().' à bien été modifié.</p>';
+		}
+		else{
+			return '<p class="red">Echec de la modification de l\'utilisateur '.$client->nom_client().'</p>';
+		}
 	}
 
 	// DELETE
+	public function delete($data){
+
+		$db=parent::connect();
+
+		if(is_int($data)){
+			$sql= "DELETE FROM client WHERE id = ".$data;
+			$query= $db -> prepare ($sql);
+			$query -> execute ();
+
+			return '<p class="green">L\'utilisateur à bien été supprimé.</p>';
+		}
+
+		return '<p class="red">Echec de la suppression de l\'utilisateur.</p>';
+	}
 
 	// SELECT *
 	public function getAll(){
@@ -86,14 +128,14 @@ class ClientsModel extends Model {
 		$db=parent::connect();
 		// Si in entier est en paramètre on récupère par rapport à l'Id
 		if(is_int($data)){
-			$sql= "SELECT * FROM clients WHERE id = :id";
+			$sql= "SELECT * FROM client WHERE id = :id";
 			$query= $db -> prepare ($sql);
 			$query->bindValue(':id', $data);
 		}
 
 		// Si une chaine de charactères est en paramètre on récupère par rapport au nom d'utilisateur
 		else if (is_string($data)){
-			$sql= "SELECT * FROM clients WHERE nom_client = :nom_client";
+			$sql= "SELECT * FROM client WHERE nom_client = :nom_client";
 			$query= $db -> prepare ($sql);
 			$query->bindValue(':nom_client', $data);
 		}
@@ -101,10 +143,11 @@ class ClientsModel extends Model {
 			// Si le paramètre est incorrect on retourne false
 			return false;
 		}
+
 		$query -> execute ();
 		$result = $query->fetch();
 		if($result && $result['nom_client'] != ''){
-		// On enregistre les valeurs dans l'instance actuelle
+			// On enregistre les valeurs dans l'instance actuelle
 			$this->setId($result['id']);
 			$this->setNom_client($result['nom_client']);
 			$this->setMot_de_passe($result['mot_de_passe']);
@@ -113,12 +156,27 @@ class ClientsModel extends Model {
 			$this->setNom($result['nom']);
 			$this->setAdresse($result['adresse']);
 			$this->setTelephone($result['telephone']);
-      		$this->setEmail($result['email']);
-			return true;
+			$this->setEmail($result['email']);
+			return $this;
 		}
 		else{
 			return false; // Si il n'y a pas de resultat on retourne false
 		}
+	}
+
+	public function exists($data){
+		$db=parent::connect();
+
+		if(is_string($data)){
+			$sql = "SELECT * FROM client WHERE nom_client ='".$data."'";
+			$query = $db->prepare($sql);
+			$query ->execute();
+			$listClient = $query->fetchAll();
+
+			return !empty($listClient); // Retourn Vrai si un Client avec le nom $data existe
+		}
+
+		return false;
 	}
 
 	// GETTERS //
@@ -129,8 +187,8 @@ class ClientsModel extends Model {
 	public function prenom() { return $this->prenom; }
 	public function nom() { return $this->nom; }
 	public function adresse() { return $this->adresse; }
-  	public function telephone() { return $this->telephone; }
-  	public function email() { return $this->email; }
+	public function telephone() { return $this->telephone; }
+	public function email() { return $this->email; }
 
 	// SETTERS //
 	public function setId( $id ){
@@ -166,13 +224,13 @@ class ClientsModel extends Model {
 	}
 	public function setAdresse( $adresse ){
 		if(is_string($adresse))
-			$this->adresse = $adresse;
+		$this->adresse = $adresse;
 	}
 	public function setTelephone( $telephone ){
 		if(is_string($telephone))
-			$this->telephone = $telephone;
+		$this->telephone = $telephone;
 	}
-  public function setEmail( $email ){
+	public function setEmail( $email ){
 		if(is_string($email)){
 			$this->email = $email;
 		}
