@@ -15,7 +15,7 @@ SESSION_START();
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="../style.css">
+	<link rel="stylesheet" type="text/css" href="/sheekstore/e_commerce/style.css">
 </head>
 <body>
 
@@ -146,8 +146,8 @@ SESSION_START();
 			</div>
 		</nav>
 
-		<div class="fille">
-			<img src="/e_commerce/img/back9.jpg">
+		<div class="header-img">
+			<img src="/sheekstore/e_commerce/img/header-img.jpg">
 
 		</div>
 
