@@ -148,7 +148,6 @@ SESSION_START();
 
 		<div class="fille">
 			<img src="/e_commerce/img/back9.jpg">
-
 		</div>
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light" id="deuxième-navbar">

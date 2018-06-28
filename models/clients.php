@@ -115,7 +115,7 @@ class ClientsModel extends Model {
 	// SELECT *
 	public function getAll(){
 		$db=parent::connect();
-		$sql= "SELECT * FROM Client";
+		$sql= "SELECT * FROM client";
 		$query= $db -> prepare ($sql);
 		$query -> execute ();
 		$clientslist= $query -> fetchAll();

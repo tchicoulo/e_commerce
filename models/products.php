@@ -7,6 +7,7 @@ class ProductsModel extends Model {
 	private $id;
 	private $libelle;
 	private $marque;
+	private $id_Categorie;
 
 	// CONSTRUCTEUR //
 	public function __construct (array $donnees){
@@ -35,12 +36,13 @@ class ProductsModel extends Model {
 			return '<p class="red">Veuillez ajouter un produit.</p>';
 		}
 
-		$sql= "INSERT INTO product SET libelle = :libelle, marque = :marque";
+		$sql= "INSERT INTO produit SET libelle = :libelle, marque = :marque, id_Categorie = :id_Categorie";
 		$query= $db -> prepare ($sql);
-		$query->bindValue(':libelle', $product->Libelle());
-		$query->bindValue(':marque', $product->Marque());
+		$query->bindValue(':libelle', $product->libelle());
+		$query->bindValue(':marque', $product->marque());
+		$query->bindValue(':id_Categorie', $product->id_Categorie());
 
-		$result = $query -> execute ();
+		$result = $query -> execute();
 
 		if($result){	// Si $result est vrai alors la requête c'est bien déroulé
 			return '<p class="green">Le produit '.$product->libelle().' à bien été ajouté.</p>';
@@ -56,14 +58,14 @@ class ProductsModel extends Model {
 		$db=parent::connect();
 
 		// On teste d'abord si l'utilisateur existe déjà ou si il est vide
-		if($this->exists($product->nom_client())){
+		if($this->exists($product->libelle())){
 			return '<p class="red">Le produit '.$product->libelle().' à déjà été ajouté.</p>';
 		}
 		elseif($product->libelle() == ''){
 			return '<p class="red">Veuillez ajouter un produit.</p>';
 		}
 
-		$sql= "UPDATE product SET libelle = :libelle, marque = :marque WHERE id=".$product->id();
+		$sql= "UPDATE produit SET libelle = :libelle, marque = :marque WHERE id=".$product->id();
 		$query= $db -> prepare ($sql);
 		$query->bindValue(':libelle', $product->libelle());
 		$query->bindValue(':marque', $product->marque());
@@ -160,6 +162,7 @@ class ProductsModel extends Model {
 	public function id() { return $this->id; }
 	public function libelle() { return $this->libelle; }
 	public function marque() { return $this->marque; }
+	public function id_Categorie() { return $this->id_Categorie; }
 
 	// SETTERS //
 	public function setId( $id ){
@@ -179,5 +182,11 @@ class ProductsModel extends Model {
 		}
 	}
 
+	public function setId_Categorie( $id_Categorie ){
+		$id_Categorie = (int) $id_Categorie;
+		if($id_Categorie > 0){
+			$this->id_Categorie = $id_Categorie;
+		}
+	}
 }
 ?>
