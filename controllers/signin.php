@@ -10,7 +10,7 @@ if(isset($_POST['signin'])){
 	$client = $client->get($_POST['login']);
 
 	// Si le client existe et que le mot de passe correspond 
-	if($client && ($client->mot_de_passe() == $_POST['password'])){
+	if($client && (password_verify($_POST['password'], $client->mot_de_passe()))){
 		$_SESSION['login'] = $client->nom_client();
 	}
 
