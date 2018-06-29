@@ -97,20 +97,13 @@
 
 
 
-										<div>Pseudo   :</div><input type="text" name="login"><br/>
+										<div>Login   :</div><input type="text" name="login"><br/>
 
 										<div>Email   :</div><input type="text" name="email"><br/>
 
 										<div>Password:</div><input type="password" name="password"><br/>
 
 										<div>Retapez votre Password:</div><input type="password" name="confirm"><br/>
-
-										<div>Signature :</div><input type="text" name="signature"><br/>
-
-
-
-
-
 
 
 										<br><input type="submit" name="signup" value="Valider">
