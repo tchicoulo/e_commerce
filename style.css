@@ -32,25 +32,30 @@
 {
 	border: 1px solid black;
 }
+
 .nom{
 	text-align: center;
 	text-decoration: underline;
 }
+
 .post
 {
 	display: flex;
 	flex-direction: row;
 }
+
 .sujet{
 	flex: 2;
 	text-align: center;
 }
+
 .sujet img
 {
 	width: 100%;
 	height: 150px;
 	margin-right: 2%;
 }
+
 .espace
 {
 	flex: 1;
