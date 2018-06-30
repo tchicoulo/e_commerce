@@ -24,7 +24,7 @@ else if(isset($searchedProduct) && $searchedProduct == false){
 	echo '<p class="red">Aucun résultat.</p>';
 }
 
-// Affichage de la liste des utilisateurs
+// Affichage de la liste des produits
 foreach ($ProductsListView as $products){
 	echo "<br/>-".$products["libelle"];
 
