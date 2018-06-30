@@ -1,9 +1,9 @@
 <?php
 class Model{
 	private $user = "root";
-  	private $password= "simplonco";
-	//private $password= "";
-  	private $dbname= "sheeks_ecommerce";
+  //private $password= "simplonco";
+	private $password= "";
+  private $dbname= "sheeks_ecommerce";
 	private $host= "localhost";
 	private $port= 8088;
 	public function connect(){
