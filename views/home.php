@@ -8,7 +8,10 @@
 <body>
 
 
-   	<div class=container></div>   
+   	<div class=container>
+   		
+   		<div class=card-columns></div>
+   	</div>   
 
 
 
