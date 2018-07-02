@@ -1,104 +1,30 @@
-.container{
+.container {
     background-color: rgb(250,250,250,0.6);
+    width: 100%;
 }
-
-#truc-haut{
-	background-color: white;
-}
-
-#deuxième-navbar{
-
-
-}
-
-#titre{
-	text-align: center;
-
-}
-
 
 .header-img img{
 	width: 100%;
 	height: 100%;
 }
-.contient
-{
-	margin-top: 1%;
 
-	margin-bottom: 2px solid blue;
-}
 
-.general
-{
-	border: 1px solid black;
-}
 
-.nom{
-	text-align: center;
-	text-decoration: underline;
-}
-
-.post
-{
-	display: flex;
-	flex-direction: row;
-}
-
-.sujet{
-	flex: 2;
-	text-align: center;
-}
-
-.sujet img
-{
-	width: 100%;
-	height: 150px;
-	margin-right: 2%;
-}
-
-.espace
-{
-	flex: 1;
-
-}
-.phrase
-{
-	flex: 8;
-}
-.titre
-{
-	font-weight: bold;
-}
-.identifiant
-{
-	flex: 4;
-	text-align: center;
-}
-.date
-{
-	flex:5;
-	text-align: center;
-}
-.mr-auto {
-    margin-right: 0 !important;
-    justify-content: end;
-}
-.navbar-toggleable-md .navbar-collapse {
-    -webkit-justify-content: flex-end;
-    justify-content: flex-end;
-}
 body{
 
+	width:100%;
     background-color: silver;
     /*background-image: url(../images/BACK8.jpg);*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .btn-outline-success:hover {
     background-color: blueviolet;
     border-color: blueviolet;
 }
+
 .btn-outline-success {
     border-color:blueviolet;
     color: blueviolet;
@@ -121,24 +47,5 @@ body{
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-}
-
-.card {
-
-	margin:auto;
-}
-
-.card img {
-
-	max-height: 200px;
-}
-
-.card-columns {
-  @include media-breakpoint-only(lg) {
-    column-count: 4;
-  }
-  @include media-breakpoint-only(xl) {
-    column-count: 5;
-  }
 }
 
