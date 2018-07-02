@@ -9,9 +9,10 @@ if(isset($_POST['signin'])){
 	//On recupère dans la base de donnée les informations du client
 	$client = $client->get($_POST['login']);
 
-	// Si le client existe et que le mot de passe correspond 
+	// Si le client existe et que le mot de passe correspond
 	if($client && (password_verify($_POST['password'], $client->mot_de_passe()))){
 		$_SESSION['login'] = $client->nom_client();
+		$_SESSION['admin'] = $client->admin();
 	}
 
 	else{

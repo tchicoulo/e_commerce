@@ -13,6 +13,7 @@ class ClientsModel extends Model {
 	private $adresse;
 	private $telephone;
 	private $email;
+	private $admin;
 
 	// CONSTRUCTEUR //
 	public function __construct (array $donnees){
@@ -157,6 +158,7 @@ class ClientsModel extends Model {
 			$this->setAdresse($result['adresse']);
 			$this->setTelephone($result['telephone']);
 			$this->setEmail($result['email']);
+			$this->setAdmin($result['admin']);
 			return $this;
 		}
 		else{
@@ -189,6 +191,7 @@ class ClientsModel extends Model {
 	public function adresse() { return $this->adresse; }
 	public function telephone() { return $this->telephone; }
 	public function email() { return $this->email; }
+	public function admin() { return $this->admin; }
 
 	// SETTERS //
 	public function setId( $id ){
@@ -233,6 +236,12 @@ class ClientsModel extends Model {
 	public function setEmail( $email ){
 		if(is_string($email)){
 			$this->email = $email;
+		}
+	}
+
+	public function setAdmin( $admin ){
+		if(is_string($admin)){
+			$this->admin = $admin;
 		}
 	}
 }
