@@ -79,7 +79,13 @@
 					</li>
 
 					<li>
-							<?php if(isset($result)){ echo $result; } // Affichage du message de confirmation / erreur ?>
+							<?php
+								if(isset($result)){ echo $result; } // Affichage du message de confirmation / erreur
+
+								if(isset($_SESSION['admin']) && $_SESSION['admin'] == 'yes'){
+									echo '<a class="nav-link" href="/sheekstore/e_commerce/index.php/admin">Administration</a>';
+								}
+							?>
 					</li>
 
 					<!-- Modal -->

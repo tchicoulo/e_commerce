@@ -57,18 +57,11 @@ class ProductsModel extends Model {
 
 		$db=parent::connect();
 
-		// On teste d'abord si l'utilisateur existe déjà ou si il est vide
-		if($this->exists($product->libelle())){
-			return '<p class="red">Le produit '.$product->libelle().' à déjà été ajouté.</p>';
-		}
-		elseif($product->libelle() == ''){
-			return '<p class="red">Veuillez ajouter un produit.</p>';
-		}
-
-		$sql= "UPDATE produit SET libelle = :libelle, marque = :marque WHERE id=".$product->id();
+		$sql= "UPDATE produit SET libelle = :libelle, marque = :marque, id_Categorie = :id_Categorie WHERE id=".$product->id();
 		$query= $db -> prepare ($sql);
 		$query->bindValue(':libelle', $product->libelle());
 		$query->bindValue(':marque', $product->marque());
+		$query->bindValue(':id_Categorie', $product->id_Categorie());
 
 		$result = $query -> execute ();
 
@@ -99,7 +92,7 @@ class ProductsModel extends Model {
 	// SELECT *
 	public function getAll(){
 		$db=parent::connect();
-		$sql= "SELECT * FROM produit";
+		$sql= "SELECT produit.id, produit.libelle, produit.marque, categorie.nom_categorie FROM produit INNER JOIN categorie ON categorie.id = produit.id_Categorie";
 		$query= $db -> prepare ($sql);
 		$query -> execute ();
 		$productslist= $query -> fetchAll();

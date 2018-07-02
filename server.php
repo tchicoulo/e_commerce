@@ -1,10 +1,15 @@
 <?php
-
-$app= __DIR__;
-
 require_once 'routes.php';
 
-$route= new Route();
-$controllers = $route->getController();
+// getting server infos
+$app= __DIR__;
+$url = $_SERVER['REQUEST_URI'];
+$method = $_SERVER['REQUEST_METHOD'];
 
+$route= new Route();
+
+// getting router infos
+$action = $route->getAction();
+$args = $route->getArgs();
+$controllers = $route->getController();  // this function include the corresponding controller
 ?>
