@@ -2,7 +2,7 @@
 
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="#"><img src="img/LOGO.jpg" width="30" height="30" class="d-inline-block align-top" alt="">Welcome To The Sheeks Store</a>
+			<a class="navbar-brand" href="/sheekstore/e_commerce/index.php/home"><img src="img/LOGO.jpg" width="30" height="30" class="d-inline-block align-top" alt="">Welcome To The Sheeks Store</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -79,7 +79,13 @@
 					</li>
 
 					<li>
-							<?php if(isset($result)){ echo $result; } // Affichage du message de confirmation / erreur ?>
+							<?php
+								if(isset($result)){ echo $result; } // Affichage du message de confirmation / erreur
+
+								if(isset($_SESSION['admin']) && $_SESSION['admin'] == 'yes'){
+									echo '<a class="nav-link" href="/sheekstore/e_commerce/index.php/admin">Administration</a>';
+								}
+							?>
 					</li>
 
 					<!-- Modal -->
@@ -97,20 +103,13 @@
 
 
 
-										<div>Pseudo   :</div><input type="text" name="login"><br/>
+										<div>Login   :</div><input type="text" name="login"><br/>
 
 										<div>Email   :</div><input type="text" name="email"><br/>
 
 										<div>Password:</div><input type="password" name="password"><br/>
 
 										<div>Retapez votre Password:</div><input type="password" name="confirm"><br/>
-
-										<div>Signature :</div><input type="text" name="signature"><br/>
-
-
-
-
-
 
 
 										<br><input type="submit" name="signup" value="Valider">
