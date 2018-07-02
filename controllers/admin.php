@@ -115,6 +115,12 @@ else if(isset($action) && $action == 'deletecategory'){
 
   $adminList= $category->getAll();
 }
+// CLIENTS
+
+if (isset($action) && $action == "showclients") {
+  $client =new ClientsModel(['id' => 0 ,'nom_client' => '', 'mot_de_passe' => '', 'civilite' => '', 'prenom' => '', 'nom' => '', 'adresse' => '', 'telephone' => '', 'email' => '']);
+  $ClientsListView= $client->getAll();
+}
 
 $content = "views/admin.php";
 require_once "views/admin_layout.php";
