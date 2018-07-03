@@ -69,7 +69,8 @@ class Route {
     return $controllers;
   }
   else{
-    require_once "views/error.php";
+    $content = "views/error.php";
+    require_once "views/layout.php";
   }
 }
 }
