@@ -14,7 +14,7 @@ if(!isset($_SESSION['admin'])){
 }
 else if($_SESSION['admin'] == 'yes'){ ?>
   <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/sheekstore/e_commerce/index.php/home">SheekStore</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/sheekstore/e_commerce/index.php/home"><img src="/sheekstore/e_commerce/img/sheeks.png" alt="Sheeks Logo" /></a>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Rechercher" aria-label="Search">
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
@@ -280,8 +280,6 @@ else if($_SESSION['admin'] == 'yes'){ ?>
           </div>
           <a href="/sheekstore/e_commerce/index.php/admin/addproduct/"><button class="btn btn-lg btn-primary btn-block" name="addproduct">Ajouter un Produit</button></a><br />
           <a href="/sheekstore/e_commerce/index.php/admin/addcategory/"><button class="btn btn-lg btn-primary btn-block" name="addproduct">Ajouter une Catégorie</button></a><br />
-
-          <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
           <?php } ?>
           </main>
           </div>
