@@ -29,7 +29,7 @@ class Route {
   else if(isset($controllers[2]) && $controllers[2] == "deconnexion"){
     require_once "controllers/deconnexion.php";
   }
-  
+
   $controllerPath = "controllers/".$controllers[1].".php";
 
     // On teste si le fichier existe avant de l'inclure pour eviter une erreur
@@ -38,7 +38,8 @@ class Route {
     return $controllers;
   }
   else{
-    require_once "views/error.php";
+    $content = "views/error.php";
+    require_once "views/layout.php";
   }
 }
 }
