@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html {
   width: 100%;
   height: 100%;
@@ -10,61 +11,17 @@ body {
 
 .container{
     background-color: rgb(250,250,250,0.6);
+    width: 100%;
 }
-
-#truc-haut{
-	background-color: white;
-}
-
-#deuxième-navbar{
-
-
-}
-
-#titre{
-	text-align: center;
-
-}
-
 
 .header-img img{
 	width: 100%;
 	height: 100%;
 }
-.contient
-{
-	margin-top: 1%;
 
-	margin-bottom: 2px solid blue;
-}
 
-.general
-{
-	border: 1px solid black;
-}
-.nom{
-	text-align: center;
-	text-decoration: underline;
-}
-.post
-{
-	display: flex;
-	flex-direction: row;
-}
-.sujet{
-	flex: 2;
-	text-align: center;
-}
-.sujet img
-{
-	width: 100%;
-	height: 150px;
-	margin-right: 2%;
-}
-.espace
-{
-	flex: 1;
 
+<<<<<<< HEAD
 }
 .phrase
 {
@@ -94,6 +51,7 @@ body {
 }
 
 body{
+    width: 100%;
     background-color: silver;
     /*background-image: url(../images/BACK8.jpg);*/
     background-position: center;
@@ -123,13 +81,14 @@ body{
   width: 100%;
   height: 100%;
 	background-image: url("img/error.jpg");
+	text-align: center;
+	color: white;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .text-error{
-  color: white;
   padding-left: 10%;
   padding-top: 5%;
 }
