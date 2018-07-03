@@ -117,6 +117,7 @@ else if(isset($action) && $action == 'deletecategory'){
 }
 
 // ORDERS
+
 if(isset($action) && $action == 'showorders'){
   // Condition ternaire pour affecter les valeur envoyer via la methode POST, on leur affecte une valeur par défaut le cas échéant
   $id = (isset($_POST['id'])) ?  $_POST['id'] : 0;

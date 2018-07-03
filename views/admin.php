@@ -173,19 +173,11 @@ else if($_SESSION['admin'] == 'yes'){ ?>
             <label for="inputName" class="sr-only">Date de la commande</label>
             <input type="text" class="form-control" placeholder="Date de la commande" name="date_commande" value="'.$date_commande.'" required autofocus><br/>
             <label for="inputBrand" class="sr-only">Id client</label>
-            <input type="text" class="form-control" placeholder="Id client" name="id_client" value="'.$id_client.'" required><br/>
-            <label for="inputCategory" class="sr-only">Catégorie</label>
-            <h5>Categorie:</h5>
-            <select class="form-control" name="id_Categorie">';
-            foreach($categories as $category){
-              if($id_categorie == $category['id']){
-                echo '<option value="'.$category['id'].'" selected>'.$category['nom_categorie'].'</option>';
-              }
-              else{
-                echo '<option value="'.$category['id'].'">'.$category['nom_categorie'].'</option>';
-              }
-            }
-            echo '</select><br /><br />';
+            <input type="text" class="form-control" placeholder="Id client" name="id_panie" value="'.$id_client.'" required><br/>
+            <label for="inputBrand" class="sr-only">Id cart</label>
+            <input type="text" class="form-control" placeholder="Id cart" name="id_cart" value="'.$id_cart.'" required><br/>';
+
+
             if($action == 'addorder'){
               echo '<button class="btn btn-lg btn-primary btn-block" type="submit" name="add">Ajouter</button>';
             }
