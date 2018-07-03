@@ -40,7 +40,7 @@
                                         <li><a href="shop.html">Bracelets</a></li>
                                     </ul>
                                     <div class="single-mega cn-col-4">
-                                        <img src="img/bg-img/bg-6.jpg" alt="">
+                                        <img src="/sheekstore/e_commerce/img/bg-img/bg-6.jpg" alt="">
                                     </div>
                                 </div>
                             </li>
