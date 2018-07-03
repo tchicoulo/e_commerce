@@ -5,7 +5,7 @@
 	</div>
 
 <div class="btn-error">
-	<a href="/e_commerce/"><p>Retour à la page d'acceuil</p></a>
+	<a href="/sheekstore/e_commerce/"><p>Retour à la page d'acceuil</p></a>
 </div>
 
 </div>
