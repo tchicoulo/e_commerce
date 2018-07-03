@@ -22,7 +22,7 @@
                     <div class="classynav">
                         <ul>
                             <li><a href="#">Shop</a>
-                                <div class="megamenu">
+                                <div class="dropdown">
                                     <ul class="single-mega cn-col-4">
                                         <li class="title">Women's Collection</li>
                                         <li><a href="shop.html">T-shirts</a></li>
