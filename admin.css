@@ -79,7 +79,7 @@ body {
 }
 
 .sidebar .nav-link.active {
-  color: #007bff;
+  color: #79467e;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -148,4 +148,35 @@ body {
 
 .green{
   color: green;
+}
+
+button{
+  background-color: #79467e !important;
+  border-color: #4a1652 !important;
+}
+
+button:hover{
+  background-color: #4a1652 !important;
+  transition: 1s;
+}
+
+input:active{
+  outline-color:  #4a1652 !important;
+}
+
+.navbar img{
+  width: 100px;
+  margin: auto;
+}
+
+a{
+  color: #79467e;
+}
+
+a:hover{
+  color: #4a1652;
+}
+
+main .green, main .red{
+  text-align: center;
 }

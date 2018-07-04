@@ -27,7 +27,7 @@ class OrdersModel extends Model {
 
 		$db=parent::connect();
 
-		$sql= "INSERT INTO order SET date_commande = :date_commande, id_client = :id_client";
+		$sql= "INSERT INTO commande SET date_commande = :date_commande, id_client = :id_client";
 		$query= $db -> prepare ($sql);
 		$query->bindValue(':date_commande', $order->date_commande());
 		$query->bindValue(':id_client', $order->id_client());
@@ -47,7 +47,7 @@ class OrdersModel extends Model {
 
 		$db=parent::connect();
 
-		$sql= "UPDATE order SET date_commande = :date_commande, id_client = :id_client WHERE id=".$order->id();
+		$sql= "UPDATE commande SET date_commande = :date_commande, id_client = :id_client WHERE id=".$order->id();
 		$query= $db -> prepare ($sql);
 		$query->bindValue(':date_commande', $order->date_commande());
 		$query->bindValue(':id_client', $order->id_client());
@@ -81,7 +81,7 @@ class OrdersModel extends Model {
 	// SELECT *
 	public function getAll(){
 		$db=parent::connect();
-		$sql= "SELECT * FROM order";
+		$sql= "SELECT * FROM commande INNER JOIN client ON commande.id_client = client.id";
 		$query= $db -> prepare ($sql);
 		$query -> execute ();
 		$orderslist= $query -> fetchAll();
@@ -94,14 +94,14 @@ class OrdersModel extends Model {
 		$db=parent::connect();
 		// Si in entier est en paramètre on récupère par rapport à l'Id
 		if(is_int($data)){
-			$sql= "SELECT * FROM order WHERE id = :id";
+			$sql= "SELECT * FROM commande WHERE id = :id";
 			$query= $db -> prepare ($sql);
 			$query->bindValue(':id', $data);
 		}
 
 		// Si une chaine de charactères est en paramètre on récupère par rapport a la commande
 		else if (is_string($data)){
-			$sql= "SELECT * FROM order WHERE date_commande = :date_commande";
+			$sql= "SELECT * FROM commande WHERE date_commande = :date_commande";
 			$query= $db -> prepare ($sql);
 			$query->bindValue(':date_commande', $data);
 		}

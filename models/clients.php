@@ -68,18 +68,9 @@ class ClientsModel extends Model {
 
 		$db=parent::connect();
 
-		// On teste d'abord si l'utilisateur existe déjà ou si il est vide
-		if($this->exists($client->nom_client())){
-			return '<p class="red">Le nom d\'utilisateur '.$client->nom_client().' est déjà utilisé.</p>';
-		}
-		elseif($client->nom_client() == ''){
-			return '<p class="red">Le nom d\'utilisateur est vide.</p>';
-		}
-
-		$sql= "UPDATE client SET nom_client = :nom_client, mot_de_passe = :mot_de_passe, civilite = :civilite, prenom = :prenom, nom = :nom, adresse = :adresse, telephone = :telephone, email = :email WHERE id=".$client->id();
+		$sql= "UPDATE client SET nom_client = :nom_client, civilite = :civilite, prenom = :prenom, nom = :nom, adresse = :adresse, telephone = :telephone, email = :email WHERE id=".$client->id();
 		$query= $db -> prepare ($sql);
 		$query->bindValue(':nom_client', $client->nom_client());
-		$query->bindValue(':mot_de_passe', $client->mot_de_passe());
 		$query->bindValue(':civilite', $client->civilite());
 		$query->bindValue(':prenom', $client->prenom());
 		$query->bindValue(':nom', $client->nom());
@@ -136,9 +127,9 @@ class ClientsModel extends Model {
 
 		// Si une chaine de charactères est en paramètre on récupère par rapport au nom d'utilisateur
 		else if (is_string($data)){
-			$sql= "SELECT * FROM client WHERE nom_client = :nom_client";
+			$sql= "SELECT * FROM client WHERE email = :email";
 			$query= $db -> prepare ($sql);
-			$query->bindValue(':nom_client', $data);
+			$query->bindValue(':email', $data);
 		}
 		else{
 			// Si le paramètre est incorrect on retourne false
@@ -147,7 +138,7 @@ class ClientsModel extends Model {
 
 		$query -> execute ();
 		$result = $query->fetch();
-		if($result && $result['nom_client'] != ''){
+		if($result && $result['email'] != ''){
 			// On enregistre les valeurs dans l'instance actuelle
 			$this->setId($result['id']);
 			$this->setNom_client($result['nom_client']);

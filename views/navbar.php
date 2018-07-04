@@ -7,7 +7,7 @@
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="index.html"><img src="/sheekstore/e_commerce/img/core-img/logo.png" alt=""></a>
+              <a class="nav-brand" href="/sheekstore/e_commerce/"><img src="/sheekstore/e_commerce/img/sheeks.png" alt=""></a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -54,6 +54,9 @@
 
             <!-- Header Meta Data -->
             <div class="header-meta d-flex clearfix justify-content-end">
+
+              <?php if(isset($result)){ echo $result; } // Affichage du message de confirmation / erreur ?>
+
                 <!-- Search Area -->
                 <div class="search-area">
                     <form action="#" method="post">
@@ -62,18 +65,31 @@
                     </form>
                 </div>
 
-
-
+                <!-- User Login Info -->
+                <?php
+                if($_SESSION && $_SESSION['admin'] == 'yes'){
+                    echo '<div class="user-login-info admin">
+                        <a href="/sheekstore/e_commerce/index.php/admin">Administration</a>
+                      </div>';
+                }
+                ?>
 
                 <!-- User Login Info -->
                 <div class="user-login-info sign">
-                    <a href="#" data-toggle="modal" data-target="#signup">SignUp</a>
+                  <?php
+                  if($_SESSION){
+                      echo '<a href="#">'.$_SESSION['login'].'</a>';
 
+                  }
+                  else {
+                    echo '<a href="#" data-toggle="modal" data-target="#signup">SignUp</a>';
+                  }
+                  ?>
 
                                     <!-- Modal SignUp Form -->
 
 <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="signup" aria-hidden="true" data-backdrop="false">
-    
+
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -83,16 +99,16 @@
         </button>
       </div>
             <div class="modal-body">
-          
+
                 <div class="form-group">
                     <form id="newuser" action="/sheekstore/e_commerce/index.php/signup" method="post">
 
 
                                         <div>Login   :</div><input type="text" name="login"><br/>
 
-                                        <div>Email   :</div><input type="text" name="email"><br/>
+                                        <div>Email   :</div><input type="email" name="email" required><br/>
 
-                                        <div>Password:</div><input type="password" name="password"><br/>
+                                        <div>Password:</div><input type="password" name="password" required><br/>
 
                                         <div>Confirm Password:</div><input type="password" name="confirm"><br/>
 
@@ -110,14 +126,20 @@
                 </div>
                 <!-- User Login Info -->
                 <div class="user-login-info sign">
-                    <a href="#" data-toggle="modal" data-target="#signin">SignIn</a>
+                    <?php
+                    if($_SESSION){
+                        echo '<a href="/sheekstore/e_commerce/index.php/logout">Déconnexion</a>';
 
-
+                    }
+                    else {
+                      echo '<a href="#" data-toggle="modal" data-target="#signin">SignIn</a>';
+                    }
+                    ?>
 
                                     <!-- Modal SignIn Form-->
 
 <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="signin" aria-hidden="true" data-backdrop="false">
-    
+
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -127,12 +149,12 @@
         </button>
       </div>
             <div class="modal-body">
-          
+
                 <div class="form-group">
                     <form id="userconnection" action="/sheekstore/e_commerce/index.php/signin" method="post">
-                        <div>Email  :</div><input type="text" name="pseudo"><br>
-                        <div>Password:</div><input type="password" name="password"><br>
-                        <br><input type="submit" name="submit" value="Se connecter">
+                        <div>Email  :</div><input type="email" name="email" required><br>
+                        <div>Password:</div><input type="password" name="password" required><br>
+                        <br><input type="submit" name="signin" value="Se connecter">
                     </form>
                 </div>
             </div>
@@ -241,8 +263,3 @@
         </div>
     </div>
     <!-- ##### Right Side Cart End ##### -->
-
-
-
-
-
