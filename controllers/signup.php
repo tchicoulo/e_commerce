@@ -8,6 +8,8 @@ if(isset($_POST['signup'])){
 	$result = $client->create($client);
 
 	$_SESSION['login'] = $client->nom_client();
+	$_SESSION['email'] = $client->email();
+	$_SESSION['admin'] = $client->admin();
 }
 
 header("Location: ./home");

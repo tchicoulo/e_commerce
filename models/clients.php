@@ -136,9 +136,9 @@ class ClientsModel extends Model {
 
 		// Si une chaine de charactères est en paramètre on récupère par rapport au nom d'utilisateur
 		else if (is_string($data)){
-			$sql= "SELECT * FROM client WHERE nom_client = :nom_client";
+			$sql= "SELECT * FROM client WHERE email = :email";
 			$query= $db -> prepare ($sql);
-			$query->bindValue(':nom_client', $data);
+			$query->bindValue(':email', $data);
 		}
 		else{
 			// Si le paramètre est incorrect on retourne false
@@ -147,7 +147,7 @@ class ClientsModel extends Model {
 
 		$query -> execute ();
 		$result = $query->fetch();
-		if($result && $result['nom_client'] != ''){
+		if($result && $result['email'] != ''){
 			// On enregistre les valeurs dans l'instance actuelle
 			$this->setId($result['id']);
 			$this->setNom_client($result['nom_client']);
