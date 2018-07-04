@@ -1,6 +1,8 @@
 <?php
 require_once "models/products.php";
 require_once "models/category.php";
+require_once "models/orders.php";
+require_once "models/clients.php";
 
 global $action;
 global $args;
@@ -45,7 +47,7 @@ else if(isset($action) && $action == 'editproduct'){
 
   $categories = $category->getAll();
 
-  if($method == 'POST' && isset($args[0])){
+  if(isset($args[0])){
     $product = $product->get((int)$args[0]);
 
     // setting product values
@@ -96,7 +98,7 @@ else if(isset($action) && $action == 'addcategory'){
 else if(isset($action) && $action == 'editcategory'){
   $category =new CategoriesModel(['id' => 0 ,'nom_categorie' => '']);
 
-  if($method == 'POST' && isset($args[0])){
+  if(isset($args[0])){
     $category = $category->get((int)$args[0]);
 
     // setting product values
@@ -122,10 +124,10 @@ if(isset($action) && $action == 'showorders'){
   // Condition ternaire pour affecter les valeur envoyer via la methode POST, on leur affecte une valeur par défaut le cas échéant
   $id = (isset($_POST['id'])) ?  $_POST['id'] : 0;
   $date_commande = (isset($_POST['date_commande'])) ?  $_POST['date_commande'] : 'default';
-  $id_client = (isset($_POST['id_client'])) ?  $_POST['id_client'] : 'default';
+  $id_client = (isset($_POST['id_client'])) ?  $_POST['id_client'] : 0;
 
   // Création d'un objet ProductsModel
-  $product =new OrdersModel(['id' => $id ,'date_commande' => $date_commande, 'id_client' => $id_client]);
+  $order =new OrdersModel(['id' => $id ,'date_commande' => $date_commande, 'id_client' => $id_client]);
 
   if(isset($_POST['add'])){	 // Ajout d'un produit
     $result = $order->create($order);
@@ -145,7 +147,7 @@ else if(isset($action) && $action == 'addorder'){
   $verb = 'Ajouter';
   $id = 0;
   $date_commande = '';
-  $id_client = '';
+  $id_client = 0;
 }
 
 else if(isset($action) && $action == 'editorder'){
@@ -154,8 +156,8 @@ else if(isset($action) && $action == 'editorder'){
 
   $categories = $category->getAll();
 
-  if($method == 'POST' && isset($args[0])){
-    $product = $product->get((int)$args[0]);
+  if(isset($args[0])){
+    $order = $order->get((int)$args[0]);
 
     // setting order values
     $verb = 'Modifier';
@@ -182,7 +184,7 @@ if (isset($action) && $action == "showclients") {
   $ClientsListView= $client->getAll();
 }
 
-$content = "views/admin.php";
-require_once "views/admin_layout.php";
+$content = "views/admin/admin.php";
+require_once "views/admin/admin-layout.php";
 
 ?>
