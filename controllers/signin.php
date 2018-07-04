@@ -1,5 +1,7 @@
 <?php
 require_once "models/clients.php";
+require_once "models/products.php";
+
 
 if(isset($_POST['signin'])){
 
@@ -21,6 +23,5 @@ if(isset($_POST['signin'])){
 	}
 }
 
-$content = "views/home.php";
-require_once "views/layout.php";
+header("Location: ./home");
 ?>
