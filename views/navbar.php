@@ -166,15 +166,15 @@
 
                 </div>
                 <!-- Favourite Area -->
-                <div class="favourite-area connected">
+                <div class="favourite-area connected hidden">
                     <a href="#"><img src="/sheekstore/e_commerce/img/core-img/heart.svg" alt=""></a>
                 </div>
                 <!-- User Login Info -->
-                <div class="user-login-info connected ">
+                <div class="user-login-info connected hidden">
                     <a href="#"><img src="/sheekstore/e_commerce/img/core-img/user.svg" alt=""></a>
                 </div>
                 <!-- Cart Area -->
-                <div class="cart-area connected">
+                <div class="cart-area connected hidden">
                     <a href="#" id="essenceCartBtn"><img src="/sheekstore/e_commerce/img/core-img/bag.svg" alt=""> <span>3</span></a>
                 </div>
             </div>

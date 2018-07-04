@@ -1,5 +1,7 @@
 <?php
 require_once "models/clients.php";
+require_once "models/products.php";
+
 
 if(isset($_POST['signin'])){
 
@@ -14,13 +16,16 @@ if(isset($_POST['signin'])){
 		$_SESSION['login'] = $client->nom_client();
 		$_SESSION['email'] = $client->email();
 		$_SESSION['admin'] = $client->admin();
+
 	}
+
+
 
 	else{
 		$result = '<span class="nav-link">Nom d\'utilisateur ou mot de passe incorrect</span>';
 	}
 }
 
-$content = "views/home.php";
-require_once "views/layout.php";
+header("Location: ./home");
 ?>
+
