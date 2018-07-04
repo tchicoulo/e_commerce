@@ -47,7 +47,7 @@ else if($_SESSION['admin'] == 'yes'){ ?>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/sheekstore/e_commerce/index.php/admin/showclients">
+              <a class="nav-link" href="/sheekstore/e_commerce/index.php/admin/showusers">
                 <span data-feather="users"></span>
                 Utilisateurs
               </a>
@@ -79,7 +79,7 @@ else if($_SESSION['admin'] == 'yes'){ ?>
 
           // CATEGORIES
           require_once "admin-categories.php";
-          
+
         }
         else{
           ?>
