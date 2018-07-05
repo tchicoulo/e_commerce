@@ -65,27 +65,6 @@
                     </form>
                 </div>
 
-                <!-- User Login Info -->
-                <?php
-                if($_SESSION && $_SESSION['admin'] == 'yes'){
-                    echo '<div class="user-login-info admin">
-                        <a href="/sheekstore/e_commerce/index.php/admin">Administration</a>
-                      </div>';
-                }
-                ?>
-
-                <!-- User Login Info -->
-                <div class="user-login-info sign">
-                  <?php
-                  if($_SESSION){
-                      echo '<a href="#">'.$_SESSION['login'].'</a>';
-
-                  }
-                  else {
-                    echo '<a href="#" data-toggle="modal" data-target="#signup">SignUp</a>';
-                  }
-                  ?>
-
                                     <!-- Modal SignUp Form -->
 
 <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="signup" aria-hidden="true" data-backdrop="false">
@@ -123,19 +102,6 @@
 
                             <!-- Modal SignUp Form End -->
 
-                </div>
-                <!-- User Login Info -->
-                <div class="user-login-info sign">
-                    <?php
-                    if($_SESSION){
-                        echo '<a href="/sheekstore/e_commerce/index.php/logout">Déconnexion</a>';
-
-                    }
-                    else {
-                      echo '<a href="#" data-toggle="modal" data-target="#signin">SignIn</a>';
-                    }
-                    ?>
-
                                     <!-- Modal SignIn Form-->
 
 <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="signin" aria-hidden="true" data-backdrop="false">
@@ -160,23 +126,53 @@
             </div>
         </div>
      </div>
-    </div>
+    
 
                             <!-- Modal SignIn Form End -->
 
                 </div>
+                <!-- User Login Info -->
+                
+                    <div class="user-login-info">
+                        <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/sheekstore/e_commerce/img/core-img/user.svg" alt=""></a>
+                            <div class="dropdown-menu">
+                                 <?php
+                    if($_SESSION){
+                        echo '  <a href="#">'.$_SESSION['login'].'</a>
+                                <a href="/sheekstore/e_commerce/index.php/logout">LogOut</a>';
+
+                    if($_SESSION['admin'] == 'yes'){
+                    echo '<a href="/sheekstore/e_commerce/index.php/admin">Administration</a>';
+                
+                    }
+
+                    }else{
+                      echo '<a href="#" data-toggle="modal" data-target="#signin">SignIn</a>
+                            <a href="#" data-toggle="modal" data-target="#signup">SignUp</a>';
+                    }
+                    ?>
+
+                            </div>
+                        </div>
+
+                    </div>
+                
+                
+
+                
+                 <?php if($_SESSION){
+
+                echo '    
                 <!-- Favourite Area -->
-                <div class="favourite-area connected hidden">
+                <div class="favourite-area">
                     <a href="#"><img src="/sheekstore/e_commerce/img/core-img/heart.svg" alt=""></a>
                 </div>
-                <!-- User Login Info -->
-                <div class="user-login-info connected hidden">
-                    <a href="#"><img src="/sheekstore/e_commerce/img/core-img/user.svg" alt=""></a>
-                </div>
+
                 <!-- Cart Area -->
-                <div class="cart-area connected hidden">
+                <div class="cart-area">
                     <a href="#" id="essenceCartBtn"><img src="/sheekstore/e_commerce/img/core-img/bag.svg" alt=""> <span>3</span></a>
-                </div>
+                </div> ';} ?>
             </div>
 
         </div>
