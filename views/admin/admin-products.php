@@ -47,6 +47,8 @@ else if($action =='addproduct' || $action =='editproduct'){
   <input type="text" class="form-control" placeholder="Nom du produit" name="libelle" value="'.$libelle.'" required autofocus><br/>
   <label for="inputBrand" class="sr-only">Marque</label>
   <input type="text" class="form-control" placeholder="Marque" name="marque" value="'.$marque.'" required><br/>
+  <label for="inputDesc" class="sr-only">Description</label>
+  <textarea name="description" class="form-control" form="form-signin" placeholder="Entrez une description ici..."></textarea><br/>
   <label for="inputCategory" class="sr-only">Catégorie</label>
   <h5>Categorie:</h5>
   <select class="form-control" name="id_Categorie">';
@@ -58,7 +60,16 @@ else if($action =='addproduct' || $action =='editproduct'){
       echo '<option value="'.$category['id'].'">'.$category['nom_categorie'].'</option>';
     }
   }
-  echo '</select><br /><br />';
+  echo '</select><br />
+  <h5>Stock:</h5>
+  <label for="inputStock" class="sr-only">Stock</label>
+  <input type="number" class="form-control" placeholder="0" name="stock" value=""><br />
+  <h5>Prix (en  €):</h5>
+  <label for="inputStock" class="sr-only">Prix</label>
+  <input type="number" class="form-control" placeholder="0" name="prix" value=""><br/>
+  <h5>Image 1:</h5>
+  <label for="inputImg" class="sr-only">Image 1</label>
+  <input type="file" class="form-control" placeholder="0" name="img1" value=""><br/><br/>';
   if($action == 'addproduct'){
     echo '<button class="btn btn-lg btn-primary btn-block" type="submit" name="add">Ajouter</button>';
   }

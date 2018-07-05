@@ -163,8 +163,8 @@
 						<?php 
 						
 						foreach($ProductsListView as $product) { 
-						?>
-                            <!-- Single Product -->
+		
+                            echo '<!-- Single Product -->
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="single-product-wrapper">
                                     <!-- Product Image -->
@@ -187,7 +187,7 @@
                                     <div class="product-description">
                                         <span>topshop</span>
                                         <a href="single-product-details.html">
-                                            <h6><?php echo $product['libelle']; ?></h6>
+                                            <h6>'.$product['libelle'].'</h6>
                                         </a>
                                         <p class="product-price"><span class="old-price">$75.00</span> $55.00</p>
 
@@ -195,15 +195,14 @@
                                         <div class="hover-content">
                                             <!-- Add to Cart -->
                                             <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
+                                                <a href="#" class="btn essence-btn">Ajouter au panier</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                         <?php  }
-                        ?>
-                           
+                            </div>';
+                           }
+                        ?>   
 
                         </div>
                     </div>

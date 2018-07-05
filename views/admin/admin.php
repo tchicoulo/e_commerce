@@ -5,7 +5,7 @@ if(!isset($_SESSION['admin'])){
     <img class="mb-4" src="/sheekstore/e_commerce/img/logo.jpg" alt="">
     <h1 class="h3 mb-3 font-weight-normal">Identifiez-vous</h1>
     <label for="inputEmail" class="sr-only">Adresse E-mail</label>
-    <input type="text" id="inputEmail" class="form-control" placeholder="Adresse E-mail" name="login" required autofocus>
+    <input type="text" id="inputEmail" class="form-control" placeholder="Adresse E-mail" name="email" required autofocus>
     <label for="inputPassword" class="sr-only">Mot de passe</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" name="password" required><br/>
     <button class="btn btn-lg btn-primary btn-block" type="submit" name="signin">Connexion</button>
