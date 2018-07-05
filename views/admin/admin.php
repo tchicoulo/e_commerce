@@ -1,4 +1,6 @@
 <?php
+require_once "views/navbar.php";
+
 if(!isset($_SESSION['admin'])){
   ?>
   <form class="form-signin" action="/sheekstore/e_commerce/index.php/signin" method="post">
@@ -13,15 +15,6 @@ if(!isset($_SESSION['admin'])){
   <?php
 }
 else if($_SESSION['admin'] == 'yes'){ ?>
-  <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/sheekstore/e_commerce/index.php/home"><img src="/sheekstore/e_commerce/img/sheeks.png" alt="Sheeks Logo" /></a>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Rechercher" aria-label="Search">
-    <ul class="navbar-nav px-3">
-      <li class="nav-item text-nowrap">
-        <a class="nav-link" href="/sheekstore/e_commerce/index.php/logout">Déconnexion</a>
-      </li>
-    </ul>
-  </nav>
 
   <div class="container-fluid">
     <div class="row">
