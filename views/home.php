@@ -38,53 +38,30 @@
                                 <ul id="menu-content2" class="menu-content collapse show">
                                     <!-- Single Item -->
                                     <li data-toggle="collapse" data-target="#clothing">
-                                        <a href="#">clothing</a>
+                                        <a href="#">Womens</a>
                                         <ul class="sub-menu collapse show" id="clothing">
                                             <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                            <li><a href="#">Jackets &amp; Coats</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Pants &amp; Leggings</a></li>
-                                            <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                            <li><a href="#">Shirts &amp; Blouses</a></li>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Sweaters &amp; Knits</a></li>
+                                            <li><a href="#">T-Shirts</a></li>
                                         </ul>
                                     </li>
                                     <!-- Single Item -->
                                     <li data-toggle="collapse" data-target="#shoes" class="collapsed">
-                                        <a href="#">shoes</a>
+                                        <a href="#">Kids</a>
                                         <ul class="sub-menu collapse" id="shoes">
                                             <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                            <li><a href="#">Jackets &amp; Coats</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Pants &amp; Leggings</a></li>
-                                            <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                            <li><a href="#">Shirts &amp; Blouses</a></li>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Sweaters &amp; Knits</a></li>
+                                            <li><a href="#">T-Shirts</a></li>
                                         </ul>
                                     </li>
                                     <!-- Single Item -->
                                     <li data-toggle="collapse" data-target="#accessories" class="collapsed">
-                                        <a href="#">accessories</a>
+                                        <a href="#">Accessories</a>
                                         <ul class="sub-menu collapse" id="accessories">
                                             <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                            <li><a href="#">Jackets &amp; Coats</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Pants &amp; Leggings</a></li>
-                                            <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                            <li><a href="#">Shirts &amp; Blouses</a></li>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Sweaters &amp; Knits</a></li>
+                                            <li><a href="#">Mouses</a></li>
+                                            <li><a href="#">Pads</a></li>
+                                            <li><a href="#">PlayCards</a></li>
+                                            <li><a href="#">Mugs</a></li>
+                                            <li><a href="#">Bracelets</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -159,19 +136,20 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row products-area">
+
 						<?php 
 						
 						foreach($ProductsListView as $product) { 
-		
+
                             echo '<!-- Single Product -->
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="single-product-wrapper">
                                     <!-- Product Image -->
                                     <div class="product-img">
-                                        <img src="/sheekstore/e_commerce/img/product-img/product-1.jpg" alt="">
+                                        <img src="/sheekstore/e_commerce/img/product-img/muggirl.jpg" alt="">
                                         <!-- Hover Thumb -->
-                                        <img class="hover-img" src="/sheekstore/e_commerce/img/product-img/product-2.jpg" alt="">
+                                        <img class="hover-img" src="/sheekstore/e_commerce/img/product-img/muggirl.jpg" alt="">
 
                                         <!-- Product Badge -->
                                         <div class="product-badge offer-badge">

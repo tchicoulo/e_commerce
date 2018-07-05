@@ -1,0 +1,4 @@
+$(".connected").toggleClass("hidden");
+
+
+

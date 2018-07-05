@@ -16,7 +16,10 @@ if(isset($_POST['signin'])){
 		$_SESSION['login'] = $client->nom_client();
 		$_SESSION['email'] = $client->email();
 		$_SESSION['admin'] = $client->admin();
+
 	}
+
+
 
 	else{
 		$result = '<span class="nav-link">Nom d\'utilisateur ou mot de passe incorrect</span>';
@@ -25,3 +28,4 @@ if(isset($_POST['signin'])){
 
 header("Location: ./home");
 ?>
+
