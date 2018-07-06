@@ -48,3 +48,7 @@
 
   display: none;
 }
+
+.product-img img {
+  max-height: 20px;
+}

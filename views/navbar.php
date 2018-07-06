@@ -103,6 +103,10 @@
       <!-- Modal SignUp Form End -->
 
       <!-- Modal SignIn Form-->
+<<<<<<< HEAD
+
+=======
+>>>>>>> 42201bce69932a6f69ad49d91df4451bb571305e
 
       <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="signin" aria-hidden="true" data-backdrop="false">
 

@@ -22,7 +22,7 @@ if (isset($action) && $action == "showusers") {
   else if(isset($_POST['update'])){ // Mise à jour d'un produit
     $result = $client->update($client);
   }
-
+  
   $ClientsListView= $client->getAll();
 }
 else if(isset($action) && $action == 'adduser'){
