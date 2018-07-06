@@ -117,7 +117,9 @@
                                 <div class="product-topbar d-flex align-items-center justify-content-between">
                                     <!-- Total Products -->
                                     <div class="total-products">
-                                        <p><span><?php echo $productsCount; ?></span> produits trouvés</p>
+                                        <p><span>
+                                        	<?php echo $productsCount; ?>	
+                                        </span> produits trouvés</p>
                                     </div>
                                     <!-- Sorting -->
                                     <div class="product-sorting d-flex">
@@ -144,7 +146,7 @@
 
                             echo '<!-- Single Product -->
                             <div class="col-12 col-sm-6 col-lg-4">
-																<form class="form-product">
+								<form class="form-product">
                                 <div class="single-product-wrapper">
                                     <!-- Product Image -->
                                     <div class="product-img">
@@ -170,13 +172,12 @@
                                         <div class="hover-content">
                                             <!-- Add to Cart -->
                                             <div class="add-to-cart-btn">
-																								<input name="id_product" type="hidden" value="'.$product['id'].'">
-                                                <button type="submit" class="btn essence-btn">Ajouter au panier</button>
+                                          		<button type="submit" class="btn essence-btn">Ajouter au panier</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-																</form>
+								</form>
                             </div>';
                            }
                         ?>

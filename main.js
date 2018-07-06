@@ -12,7 +12,7 @@ $(".form-product").submit(function(e){ //user clicks form submit button
         data: form_data
     }).done(function(data){ //on Ajax success
 
-        $("#cart-count").html(data.items); //total items count fetch in cart-info element
+        $("#essenceCartBtn").html(data.items); //total items count fetch in cart-info element
         button_content.html('Ajouter au panier'); //reset button text to original text
         alert("Article ajouté au panier!"); //alert user
         //if($(".shopping-cart-box").css("display") == "block"){ //if cart box is still visible
@@ -20,6 +20,5 @@ $(".form-product").submit(function(e){ //user clicks form submit button
         }
     })
     e.preventDefault();
-});
 
 //Supprimer un produit du panier

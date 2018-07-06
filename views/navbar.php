@@ -171,7 +171,7 @@
 
         <!-- Cart Area -->
         <div class="cart-area">
-        <a  id="cart-count" href="#" id="essenceCartBtn"><img src="/sheekstore/e_commerce/img/core-img/bag.svg" alt="">
+        <a href="#" id="essenceCartBtn"><img src="/sheekstore/e_commerce/img/core-img/bag.svg" alt="">
         <span>';
 
         if(isset($_SESSION["products"])){
@@ -182,7 +182,8 @@
 
         echo '</span>
         </a>
-        </div> ';} ?>
+        </div> ';
+    	} ?>
       </div>
 
     </div>
@@ -213,56 +214,27 @@
 
         <!-- Cart List Area -->
         <div class="cart-list">
-          <!-- Single Cart Item -->
-          <div class="single-cart-item">
-            <a href="#" class="product-image">
-              <img src="/sheekstore/e_commerce/img/product-img/product-1.jpg" class="cart-thumb" alt="">
-              <!-- Cart Item Desc -->
-              <div class="cart-item-desc">
-                <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                <span class="badge">Mango</span>
-                <h6>Button Through Strap Mini Dress</h6>
-                <p class="size">Size: S</p>
-                <p class="color">Color: Red</p>
-                <p class="price">$45.00</p>
-              </div>
-            </a>
-          </div>
-
-          <!-- Single Cart Item -->
-          <div class="single-cart-item">
-            <a href="#" class="product-image">
-              <img src="/sheekstore/e_commerce/img/product-img/product-2.jpg" class="cart-thumb" alt="">
-              <!-- Cart Item Desc -->
-              <div class="cart-item-desc">
-                <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                <span class="badge">Mango</span>
-                <h6>Button Through Strap Mini Dress</h6>
-                <p class="size">Size: S</p>
-                <p class="color">Color: Red</p>
-                <p class="price">$45.00</p>
-              </div>
-            </a>
-          </div>
-
-          <!-- Single Cart Item -->
-          <div class="single-cart-item">
-            <a href="#" class="product-image">
-              <img src="/sheekstore/e_commerce/img/product-img/product-3.jpg" class="cart-thumb" alt="">
-              <!-- Cart Item Desc -->
-              <div class="cart-item-desc">
-                <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                <span class="badge">Mango</span>
-                <h6>Button Through Strap Mini Dress</h6>
-                <p class="size">Size: S</p>
-                <p class="color">Color: Red</p>
-                <p class="price">$45.00</p>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Cart Summary -->
+        <?php 
+        if(isset($_SESSION["products"])){
+	        foreach ($_SESSION["products"] as $product){		
+	          echo '<!-- Single Cart Item -->
+	          <div class="single-cart-item">
+	            <a href="#" class="product-image">
+	              <img src="/sheekstore/e_commerce/img/product-img/product-1.jpg" class="cart-thumb" alt="">
+	              <!-- Cart Item Desc -->
+	              <div class="cart-item-desc">
+	                <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+	                <span class="badge">Mango</span>
+	                <h6>'.$product['product_name'].'</h6>
+	                <p class="size">Size: S</p>
+	                <p class="color">Color: Red</p>
+	                <p class="price">$45.00</p>
+	              </div>
+	            </a>
+	          </div>';
+	      	}
+        
+        echo '<!-- Cart Summary -->
         <div class="cart-amount-summary">
 
           <h2>Summary</h2>
@@ -275,7 +247,20 @@
           <div class="checkout-btn mt-100">
             <a href="checkout.html" class="btn essence-btn">check out</a>
           </div>
-        </div>
+        </div>';
+
+    }
+    else{
+    	echo '
+    	<div class="cart-amount-summary">
+    		<h2>Summary</h2>
+            <ul class="summary-table">
+            <li><span>Le panier est vide</span></li>
+          </ul>
+        </div>';
+    }
+    ?>
+    	</div>
       </div>
     </div>
     <!-- ##### Right Side Cart End ##### -->
