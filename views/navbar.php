@@ -102,7 +102,7 @@
 
                             <!-- Modal SignUp Form End -->
 
-                                    <!-- Modal SignIn Form-->
+                            <!-- Modal SignIn Form-->
 
 <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="signin" aria-hidden="true" data-backdrop="false">
 
