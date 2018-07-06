@@ -6,16 +6,29 @@ if(isset($action) && $action == 'showproducts'){
   $id = (isset($_POST['id'])) ?  $_POST['id'] : 0;
   $libelle = (isset($_POST['libelle'])) ?  $_POST['libelle'] : 'default';
   $marque = (isset($_POST['marque'])) ?  $_POST['marque'] : 'default';
+  $description = (isset($_POST['description'])) ?  $_POST['description'] : '';
   $id_Categorie = (isset($_POST['id_Categorie'])) ?  $_POST['id_Categorie'] : 1;
+  $stock = (isset($_POST['stock'])) ?  $_POST['stock'] : 0;
+  $prix = (isset($_POST['prix'])) ?  $_POST['prix'] : 0;
+  $img1 = (isset($_FILES['img1']) && $_FILES['img1']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/'.$_FILES['img1']['name'] : '/sheekstore/e_commerce/img/logo.png';
+  $img2 = (isset($_FILES['img2']) && $_FILES['img2']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/'.$_FILES['img2']['name'] : '/sheekstore/e_commerce/img/logo.png';
+  $img3 = (isset($_FILES['img3']) && $_FILES['img3']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/'.$_FILES['img3']['name'] : '/sheekstore/e_commerce/img/logo.png';
+
 
   // Création d'un objet ProductsModel
-  $product =new ProductsModel(['id' => $id ,'libelle' => $libelle, 'marque' => $marque, 'id_Categorie' => $id_Categorie]);
+  $product =new ProductsModel(['id' => $id ,'libelle' => $libelle, 'marque' => $marque, 'description' => $description, 'id_Categorie' => $id_Categorie, 'stock' => $stock, 'prix' => $prix,
+  'img1' => $img1, 'img2' => $img2, 'img3' => $img3]);
 
   if(isset($_POST['add'])){	 // Ajout d'un produit
+
+    uploadImg();
     $result = $product->create($product);
   }
 
   else if(isset($_POST['update'])){ // Mise à jour d'un produit
+
+
+    uploadImg();
     $result = $product->update($product);
   }
 
@@ -30,7 +43,14 @@ else if(isset($action) && $action == 'addproduct'){
   $id = 0;
   $libelle = '';
   $marque = '';
-  $id_categorie = 1;
+  $description = '';
+  $id_Categorie = 1;
+  $stock = 0;
+  $prix = 0;
+  $img1 = 'img/logo.png';
+  $img2 = 'img/logo.png';
+  $img3 = 'img/logo.png';
+
 }
 
 else if(isset($action) && $action == 'editproduct'){
@@ -47,7 +67,13 @@ else if(isset($action) && $action == 'editproduct'){
     $id = $product->id();
     $libelle = $product->libelle();
     $marque = $product->marque();
-    $id_categorie = $product->id_Categorie();
+    $description = $product->description();
+    $id_Categorie = $product->id_Categorie();
+    $stock = $product->stock();
+    $prix = $product->prix();
+    $img1 = $product->img1();
+    $img2 = $product->img2();
+    $img3 = $product->img3();
   }
 }
 

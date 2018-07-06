@@ -28,8 +28,8 @@ if($action == 'showproducts' || $action == 'deleteproduct'){
     <td><a href="/sheekstore/e_commerce/index.php/admin/editproduct/'.$product['id'].'">'.$product['libelle'].'</a></td>
     <td>'.$product['marque'].'</td>
     <td>'.$product['nom_categorie'].'</td>
-    <td></td>
-    <td></td>
+    <td>'.$product['stock'].'</td>
+    <td>'.$product['prix'].'€</td>
     <form method="post">
     <td><input type="image" formaction="/sheekstore/e_commerce/index.php/admin/editproduct/'.$product['id'].'" src="/sheekstore/e_commerce/img/edit.png" alt="Icone d\'édition" class="icon" /></td>
     <td><input type="image" formaction="/sheekstore/e_commerce/index.php/admin/deleteproduct/'.$product['id'].'" src="/sheekstore/e_commerce/img/delete.png" alt="Icone de suppression" class="icon" /></td>
@@ -40,7 +40,7 @@ if($action == 'showproducts' || $action == 'deleteproduct'){
   </table>';
 }
 else if($action =='addproduct' || $action =='editproduct'){
-  echo '<form class="form-signin" action="/sheekstore/e_commerce/index.php/admin/showproducts" method="post">
+  echo '<form id="form-product" class="form-signin" action="/sheekstore/e_commerce/index.php/admin/showproducts" method="post" enctype="multipart/form-data">
   <h1 class="h3 mb-3 font-weight-normal">'.$verb.' un produit</h1>
   <input type="hidden" name="id" value="'.$id.'">
   <label for="inputName" class="sr-only">Nom du produit</label>
@@ -48,12 +48,13 @@ else if($action =='addproduct' || $action =='editproduct'){
   <label for="inputBrand" class="sr-only">Marque</label>
   <input type="text" class="form-control" placeholder="Marque" name="marque" value="'.$marque.'" required><br/>
   <label for="inputDesc" class="sr-only">Description</label>
-  <textarea name="description" class="form-control" form="form-signin" placeholder="Entrez une description ici..."></textarea><br/>
+  <textarea name="description" class="form-control" form="form-product" placeholder="Entrez une description ici...">'.$description.'</textarea><br/>
   <label for="inputCategory" class="sr-only">Catégorie</label>
   <h5>Categorie:</h5>
   <select class="form-control" name="id_Categorie">';
+  // Boucle pour afficher le menu déroulant des catégories de notre bdd
   foreach($categories as $category){
-    if($id_categorie == $category['id']){
+    if($category['id'] == $id_Categorie){
       echo '<option value="'.$category['id'].'" selected>'.$category['nom_categorie'].'</option>';
     }
     else{
@@ -63,13 +64,19 @@ else if($action =='addproduct' || $action =='editproduct'){
   echo '</select><br />
   <h5>Stock:</h5>
   <label for="inputStock" class="sr-only">Stock</label>
-  <input type="number" class="form-control" placeholder="0" name="stock" value=""><br />
+  <input type="number" class="form-control" placeholder="0" name="stock" value="'.$stock.'"><br />
   <h5>Prix (en  €):</h5>
   <label for="inputStock" class="sr-only">Prix</label>
-  <input type="number" class="form-control" placeholder="0" name="prix" value=""><br/>
+  <input type="number" step="0.01" class="form-control" placeholder="0" name="prix" value="'.$prix.'" required><br/>
   <h5>Image 1:</h5>
   <label for="inputImg" class="sr-only">Image 1</label>
-  <input type="file" class="form-control" placeholder="0" name="img1" value=""><br/><br/>';
+  <input type="file" class="form-control" placeholder="0" name="img1" value="'.$img1.'"><br/>
+  <h5>Image 2:</h5>
+  <label for="inputImg" class="sr-only">Image 2</label>
+  <input type="file" class="form-control" placeholder="0" name="img2" value="'.$img2.'"><br/>
+  <h5>Image 3:</h5>
+  <label for="inputImg" class="sr-only">Image 3</label>
+  <input type="file" class="form-control" placeholder="0" name="img3" value="'.$img3.'"><br/><br/>';
   if($action == 'addproduct'){
     echo '<button class="btn btn-lg btn-primary btn-block" type="submit" name="add">Ajouter</button>';
   }

@@ -4,6 +4,8 @@ require_once "models/category.php";
 require_once "models/orders.php";
 require_once "models/clients.php";
 
+require_once "controllers/upload.php";
+
 global $action;
 global $args;
 global $method;

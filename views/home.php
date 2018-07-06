@@ -117,7 +117,7 @@
                                 <div class="product-topbar d-flex align-items-center justify-content-between">
                                     <!-- Total Products -->
                                     <div class="total-products">
-                                        <p><span>186</span> products found</p>
+                                        <p><span><?php echo $productsCount; ?></span> produits trouvés</p>
                                     </div>
                                     <!-- Sorting -->
                                     <div class="product-sorting d-flex">
@@ -138,23 +138,20 @@
 
                         <div class="row products-area">
 
-						<?php 
-						
-						foreach($ProductsListView as $product) { 
+						<?php
+
+						foreach($ProductsListView as $product) {
 
                             echo '<!-- Single Product -->
                             <div class="col-12 col-sm-6 col-lg-4">
+																<form class="form-product">
                                 <div class="single-product-wrapper">
                                     <!-- Product Image -->
                                     <div class="product-img">
-                                        <img src="/sheekstore/e_commerce/img/product-img/muggirl.jpg" alt="">
+                                        <img src="'.$product['img1'].'" alt="">
                                         <!-- Hover Thumb -->
-                                        <img class="hover-img" src="/sheekstore/e_commerce/img/product-img/muggirl.jpg" alt="">
+                                        <img class="hover-img" src="'.$product['img2'].'" alt="">
 
-                                        <!-- Product Badge -->
-                                        <div class="product-badge offer-badge">
-                                            <span>-30%</span>
-                                        </div>
                                         <!-- Favourite -->
                                         <div class="product-favourite">
                                             <a href="#" class="favme fa fa-heart"></a>
@@ -163,24 +160,26 @@
 
                                     <!-- Product Description -->
                                     <div class="product-description">
-                                        <span>topshop</span>
+                                        <span>'.$product['nom_categorie'].'</span>
                                         <a href="single-product-details.html">
                                             <h6>'.$product['libelle'].'</h6>
                                         </a>
-                                        <p class="product-price"><span class="old-price">$75.00</span> $55.00</p>
+                                        <p class="product-price">'.$product['prix'].'€</p>
 
                                         <!-- Hover Content -->
                                         <div class="hover-content">
                                             <!-- Add to Cart -->
                                             <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Ajouter au panier</a>
+																								<input name="id_product" type="hidden" value="'.$product['id'].'">
+                                                <button type="submit" class="btn essence-btn">Ajouter au panier</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+																</form>
                             </div>';
                            }
-                        ?>   
+                        ?>
 
                         </div>
                     </div>
@@ -203,7 +202,7 @@
     <!-- ##### Shop Grid Area End ##### -->
     <!-- ##### New Arrivals Area End ##### -->
 
-<?php 
+<?php
 require_once "views/footer.php"
 ?>
     </body>
