@@ -170,13 +170,13 @@
                                         <div class="hover-content">
                                             <!-- Add to Cart -->
                                             <div class="add-to-cart-btn">
-																								<input name="id_product" type="hidden" value="'.$product['id'].'">
+												<input name="id_product" type="hidden" value="'.$product['id'].'">
                                                 <button type="submit" class="btn essence-btn">Ajouter au panier</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-																</form>
+									</form>
                             </div>';
                            }
                         ?>
