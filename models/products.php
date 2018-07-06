@@ -263,12 +263,18 @@ class ProductsModel extends Model {
 		if($stock >= 0){
 			$this->stock = $stock;
 		}
+		else{
+			$this->stock = 0;
+		}
 	}
 
 	public function setPrix( $prix ){
 		$prix = (float) $prix;
 		if($prix >= 0){
 			$this->prix = $prix;
+		}
+		else{
+			$this->prix = 0;
 		}
 	}
 
