@@ -138,23 +138,19 @@
 
                         <div class="row products-area">
 
-						<?php 
-						
-						foreach($ProductsListView as $product) { 
+						<?php
+
+						foreach($ProductsListView as $product) {
 
                             echo '<!-- Single Product -->
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="single-product-wrapper">
                                     <!-- Product Image -->
                                     <div class="product-img">
-                                        <img src="/sheekstore/e_commerce/img/product-img/muggirl.jpg" alt="">
+                                        <img src="'.$product['img1'].'" alt="">
                                         <!-- Hover Thumb -->
-                                        <img class="hover-img" src="/sheekstore/e_commerce/img/product-img/muggirl.jpg" alt="">
+                                        <img class="hover-img" src="'.$product['img2'].'" alt="">
 
-                                        <!-- Product Badge -->
-                                        <div class="product-badge offer-badge">
-                                            <span>-30%</span>
-                                        </div>
                                         <!-- Favourite -->
                                         <div class="product-favourite">
                                             <a href="#" class="favme fa fa-heart"></a>
@@ -167,7 +163,7 @@
                                         <a href="single-product-details.html">
                                             <h6>'.$product['libelle'].'</h6>
                                         </a>
-                                        <p class="product-price"><span class="old-price">$75.00</span> $55.00</p>
+                                        <p class="product-price">'.$product['prix'].'€</p>
 
                                         <!-- Hover Content -->
                                         <div class="hover-content">
@@ -180,7 +176,7 @@
                                 </div>
                             </div>';
                            }
-                        ?>   
+                        ?>
 
                         </div>
                     </div>
@@ -203,7 +199,7 @@
     <!-- ##### Shop Grid Area End ##### -->
     <!-- ##### New Arrivals Area End ##### -->
 
-<?php 
+<?php
 require_once "views/footer.php"
 ?>
     </body>

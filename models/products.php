@@ -7,7 +7,13 @@ class ProductsModel extends Model {
 	private $id;
 	private $libelle;
 	private $marque;
+	private $description;
 	private $id_Categorie;
+	private $stock;
+	private $prix;
+	private $img1;
+	private $img2;
+	private $img3;
 
 	// CONSTRUCTEUR //
 	public function __construct (array $donnees){
@@ -36,11 +42,17 @@ class ProductsModel extends Model {
 			return '<p class="red">Veuillez ajouter un produit.</p>';
 		}
 
-		$sql= "INSERT INTO produit SET libelle = :libelle, marque = :marque, id_Categorie = :id_Categorie";
+		$sql= "INSERT INTO produit SET libelle = :libelle, marque = :marque, description = :description, id_Categorie = :id_Categorie, stock = :stock, prix = :prix, img1 = :img1, img2 = :img2, img3 = :img3";
 		$query= $db -> prepare ($sql);
 		$query->bindValue(':libelle', $product->libelle());
 		$query->bindValue(':marque', $product->marque());
+		$query->bindValue(':description', $product->description());
 		$query->bindValue(':id_Categorie', $product->id_Categorie());
+		$query->bindValue(':stock', $product->stock());
+		$query->bindValue(':prix', $product->prix());
+		$query->bindValue(':img1', $product->img1());
+		$query->bindValue(':img2', $product->img2());
+		$query->bindValue(':img3', $product->img3());
 
 		$result = $query -> execute();
 
@@ -57,11 +69,17 @@ class ProductsModel extends Model {
 
 		$db=parent::connect();
 
-		$sql= "UPDATE produit SET libelle = :libelle, marque = :marque, id_Categorie = :id_Categorie WHERE id=".$product->id();
+		$sql= "UPDATE produit SET libelle = :libelle, marque = :marque, description = :description, id_Categorie = :id_Categorie, stock = :stock, prix = :prix, img1 = :img1, img2 = :img2, img3 = :img3 WHERE id=".$product->id();
 		$query= $db -> prepare ($sql);
 		$query->bindValue(':libelle', $product->libelle());
 		$query->bindValue(':marque', $product->marque());
+		$query->bindValue(':description', $product->description());
 		$query->bindValue(':id_Categorie', $product->id_Categorie());
+		$query->bindValue(':stock', $product->stock());
+		$query->bindValue(':prix', $product->prix());
+		$query->bindValue(':img1', $product->img1());
+		$query->bindValue(':img2', $product->img2());
+		$query->bindValue(':img3', $product->img3());
 
 		$result = $query -> execute ();
 
@@ -92,7 +110,7 @@ class ProductsModel extends Model {
 	// SELECT *
 	public function getAll(){
 		$db=parent::connect();
-		$sql= "SELECT produit.id, produit.libelle, produit.marque, categorie.nom_categorie FROM produit INNER JOIN categorie ON categorie.id = produit.id_Categorie";
+		$sql= "SELECT produit.*, categorie.nom_categorie FROM produit INNER JOIN categorie ON categorie.id = produit.id_Categorie";
 		$query= $db -> prepare ($sql);
 		$query -> execute ();
 		$productslist= $query -> fetchAll();
@@ -128,6 +146,13 @@ class ProductsModel extends Model {
 			$this->setId($result['id']);
 			$this->setLibelle($result['libelle']);
 			$this->setMarque($result['marque']);
+			$this->setDescription($result['description']);
+			$this->setId_Categorie($result['id_Categorie']);
+			$this->setStock($result['stock']);
+			$this->setPrix($result['prix']);
+			$this->setImg1($result['img1']);
+			$this->setImg2($result['img2']);
+			$this->setImg3($result['img3']);
 
 			return $this;
 		}
@@ -135,6 +160,7 @@ class ProductsModel extends Model {
 			return false; // Si il n'y a pas de resultat on retourne false
 		}
 	}
+
 
 	public function exists($data){
 		$db=parent::connect();
@@ -151,11 +177,34 @@ class ProductsModel extends Model {
 		return false;
 	}
 
+	public function imgExists($i){
+		$db=parent::connect();
+
+		if(is_int($i)){
+			$sql = "SELECT * FROM produit WHERE libelle ='".$this->libelle()."'";
+			$query = $db->prepare($sql);
+			$query ->execute();
+			$product = $query->fetch();
+
+			if($product['img'.$i] != 'img/logo.png'){
+				return $product['img'.$i];
+			}
+			else {
+				return false;
+			}
+		}
+	}
 	// GETTERS //
 	public function id() { return $this->id; }
 	public function libelle() { return $this->libelle; }
 	public function marque() { return $this->marque; }
+	public function description() { return $this->description; }
 	public function id_Categorie() { return $this->id_Categorie; }
+	public function stock() { return $this->stock; }
+	public function prix() { return $this->prix; }
+	public function img1() { return $this->img1; }
+	public function img2() { return $this->img2; }
+	public function img3() { return $this->img3; }
 
 	// SETTERS //
 	public function setId( $id ){
@@ -175,11 +224,50 @@ class ProductsModel extends Model {
 		}
 	}
 
+	public function setDescription( $description ){
+		if(is_string($description)){
+			$this->description = $description;
+		}
+	}
+
 	public function setId_Categorie( $id_Categorie ){
 		$id_Categorie = (int) $id_Categorie;
 		if($id_Categorie > 0){
 			$this->id_Categorie = $id_Categorie;
 		}
 	}
+
+	public function setStock( $stock ){
+		$stock = (int) $stock;
+		if($stock >= 0){
+			$this->stock = $stock;
+		}
+	}
+
+	public function setPrix( $prix ){
+		$prix = (float) $prix;
+		if($prix >= 0){
+			$this->prix = $prix;
+		}
+	}
+
+	public function setImg1( $img1 ){
+		if(is_string($img1)){
+			$this->img1 = $img1;
+		}
+	}
+
+	public function setImg2( $img2 ){
+		if(is_string($img2)){
+			$this->img2 = $img2;
+		}
+	}
+
+	public function setImg3( $img3 ){
+		if(is_string($img3)){
+			$this->img3 = $img3;
+		}
+	}
+
 }
 ?>
