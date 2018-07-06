@@ -194,6 +194,27 @@ class ProductsModel extends Model {
 			}
 		}
 	}
+
+	// Retourne le nombre de produits
+	public function count($data){
+		$db=parent::connect();
+
+		if(is_string($data)){
+			if($data == 'all'){
+				$sql= "SELECT COUNT(*) FROM produit";
+			}
+			else{
+				$sql= "SELECT COUNT(*) FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id WHERE categorie.nom_categorie = ".$data;
+			}
+
+			$query= $db -> prepare ($sql);
+			$query -> execute ();
+			return $query -> fetch()[0];
+		}
+		else{
+			return false;
+		}
+	}
 	// GETTERS //
 	public function id() { return $this->id; }
 	public function libelle() { return $this->libelle; }
