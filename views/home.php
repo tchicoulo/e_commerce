@@ -159,7 +159,7 @@
 
                                     <!-- Product Description -->
                                     <div class="product-description">
-                                        <span>topshop</span>
+                                        <span>'.$product['nom_categorie'].'</span>
                                         <a href="single-product-details.html">
                                             <h6>'.$product['libelle'].'</h6>
                                         </a>
