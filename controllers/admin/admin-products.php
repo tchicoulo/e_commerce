@@ -11,25 +11,31 @@ if(isset($action) && $action == 'showproducts'){
   $id_Categorie = (isset($_POST['id_Categorie'])) ?  $_POST['id_Categorie'] : 1;
   $stock = (isset($_POST['stock'])) ?  $_POST['stock'] : 0;
   $prix = (isset($_POST['prix'])) ?  $_POST['prix'] : 0;
-  $img1 = (isset($_FILES['img1']) && $_FILES['img1']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/': '/sheekstore/e_commerce/img/logo.png';
-  $img2 = (isset($_FILES['img2']) && $_FILES['img2']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/': '/sheekstore/e_commerce/img/logo.png';
-  $img3 = (isset($_FILES['img3']) && $_FILES['img3']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/': '/sheekstore/e_commerce/img/logo.png';
 
+  // Boucle pour deinir le chemin des fichiers à uploader
+  $imgs = array('1'=> '', '2'=> '', '3' => '');
+  for ($i = 1; $i < 4; $i++){
+      if(isset($_FILES['img'.$i]['name'])){
+      $extension = getExtension($_FILES['img'.$i]['name']);
+      $imgs[$i] = (isset($_FILES['img'.$i]) && $_FILES['img'.$i]['name'] != '') ?  'img/product-img/'.$libelle.''.$i.'.'.$extension: '/sheekstore/e_commerce/img/logo.png';
+      echo $imgs[$i].'<br/>';
+    }
+  }
 
   // Création d'un objet ProductsModel
   $product =new ProductsModel(['id' => $id ,'libelle' => $libelle, 'marque' => $marque, 'description' => $description, 'id_Categorie' => $id_Categorie, 'stock' => $stock, 'prix' => $prix,
-  'img1' => $img1, 'img2' => $img2, 'img3' => $img3]);
+  'img1' => $imgs[1], 'img2' => $imgs[2], 'img3' => $imgs[3]]);
 
   if(isset($_POST['add'])){	 // Ajout d'un produit
 
-    uploadImg();
+    uploadImg($imgs);
     $result = $product->create($product);
   }
 
   else if(isset($_POST['update'])){ // Mise à jour d'un produit
 
 
-    uploadImg();
+    uploadImg($imgs);
     $result = $product->update($product);
   }
 

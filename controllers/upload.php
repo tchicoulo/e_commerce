@@ -1,25 +1,27 @@
 <?php
 
-
-
 // image resizing function
-
 function fn_resize($image_resource_id,$width,$height) {
-           $target_width =300;
-           $target_height =450;
-           $target_layer=imagecreatetruecolor($target_width,$target_height);
-           imagecopyresampled($target_layer,$image_resource_id,0,0,0,0,$target_width,$target_height, $width,$height);
-           return $target_layer;
-           }
+  $target_width =300;
+  $target_height =450;
+  $target_layer=imagecreatetruecolor($target_width,$target_height);
+  imagecopyresampled($target_layer,$image_resource_id,0,0,0,0,$target_width,$target_height, $width,$height);
+  return $target_layer;
+}
 
+// Return extension files
+function getExtension($file_name){
+  $temp = explode(".",$file_name);
+  $extension = end($temp);
 
+  return $extension;
+}
 
 //Upload images
-function uploadImg(){
+function uploadImg($imgs){
   $return = false;
-  $libelle = $_POST['libelle'];
 
-  for($i = 1; $i < 4; $i++){ // On répète 3 fois pour les 3 images
+  for ($i = 1; $i < 4; $i++){ // On répète 3 fois pour les 3 images
     $allowedExts = array("gif","jpg","jpeg","png");
     $temp = explode(".",$_FILES['img'.$i]['name']);
     $extension = end($temp);
@@ -29,60 +31,48 @@ function uploadImg(){
     || ($_FILES['img'.$i]['type'] == 'image/pjpg')
     || ($_FILES['img'.$i]['type'] == 'image/x-png')
     || ($_FILES['img'.$i]['type'] == 'image/png'))
-    && ($_FILES['img'.$i]['size'] < 500000)
+    && ($_FILES['img'.$i]['size'] < 10000000)
     && in_array($extension,$allowedExts)) {
       if ($_FILES['img'.$i]['error'] > 0){
         $return = false;
       } else {
-        if (file_exists("img/pics_products/".$_FILES['img'.$i]['name'])){
+        if (file_exists($imgs[$i])){
           $return = false;
         } else {
-
 
           $file = $_FILES['img'.$i]['tmp_name'];
           $source_properties = getimagesize($file);
           $image_type = $source_properties[2];
+
           if( $image_type == IMAGETYPE_JPEG ) {
-          $image_resource_id = imagecreatefromjpeg($file);
-          $target_layer = fn_resize($image_resource_id,$source_properties[0],$source_properties[1]);
-          imagejpeg($target_layer,"img/product-img/".$libelle.$i.".jpg");
 
-          $imgname = $libelle.$i.".jpg"; // guillaume contact moi je t'expliquerai pourquoi les fichiers ne s'ajoutent pas à la bdd
-
+            $image_resource_id = imagecreatefromjpeg($file);
+            $target_layer = fn_resize($image_resource_id,$source_properties[0],$source_properties[1]);
+            imagejpeg($target_layer, $imgs[$i]);
           }
           elseif( $image_type == IMAGETYPE_GIF )  {
-          $image_resource_id = imagecreatefromgif($file);
-          $target_layer = fn_resize($image_resource_id,$source_properties[0],$source_properties[1]);
-          imagegif($target_layer,"img/product-img/".$libelle.$i.".gif");
 
-          $imgname = $libelle.$i.".gif";
-
+            $image_resource_id = imagecreatefromgif($file);
+            $target_layer = fn_resize($image_resource_id,$source_properties[0],$source_properties[1]);
+            imagegif($target_layer, $imgs[$i]);
           }
           elseif( $image_type == IMAGETYPE_PNG ) {
-          $image_resource_id = imagecreatefrompng($file);
-          $target_layer = fn_resize($image_resource_id,$source_properties[0],$source_properties[1]);
-          imagepng($target_layer,"img/product-img/".$libelle.$i.".png");
 
-          $imgname = $libelle.$i.".png";
-
+            $image_resource_id = imagecreatefrompng($file);
+            $target_layer = fn_resize($image_resource_id,$source_properties[0],$source_properties[1]);
+            imagepng($target_layer, $imgs[$i]);
           }
 
-          //move_uploaded_file($_FILES['img'.$i]['tmp_name'], "img/pics_products/".$_FILES['img'.$i]['name']);
-
+          move_uploaded_file($_FILES['img'.$i]['tmp_name'], $imgs[$i]);
           $return = true;
-
-
         }
       }
     } else {
       $return = false;
     }
   }
-
   return $return;
-
 }
-
 
 // resize image
 //   function fn_resize($image_resource_id,$width,$height) {
