@@ -14,7 +14,7 @@ if(isset($_POST["id_product"]))
 
     if($product){
         $new_product["product_name"] = $product->libelle(); //fetch product name from database
-        $new_product["product_price"] = $product->prix());  //fetch product price from database
+        $new_product["product_price"] = $product->prix();  //fetch product price from database
 
         if(isset($_SESSION["products"])){  //if session var already exist
             if(isset($_SESSION["products"][$new_product['id_product']])) //check item exist in products array
