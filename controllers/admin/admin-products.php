@@ -18,7 +18,6 @@ if(isset($action) && $action == 'showproducts'){
       if(isset($_FILES['img'.$i]['name'])){
       $extension = getExtension($_FILES['img'.$i]['name']);
       $imgs[$i] = (isset($_FILES['img'.$i]) && $_FILES['img'.$i]['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/'.$libelle.''.$i.'.'.$extension: '/sheekstore/e_commerce/img/logo.png';
-      echo $imgs[$i].'<br/>';
     }
   }
 
