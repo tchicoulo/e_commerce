@@ -177,6 +177,22 @@ class ProductsModel extends Model {
 		return false;
 	}
 
+	//Fonction pour recuperer la categorie de l'objet courant
+	public function getCategory(){
+		$db=parent::connect();
+
+		$sql = "SELECT categorie.nom_categorie FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id WHERE produit.id ='".$this->id()."'";
+		$query = $db->prepare($sql);
+		$query ->execute();
+		$category = $query->fetch();
+
+		if(empty($category)){
+			$category['nom_categorie'] = '';
+		}
+
+		return $category['nom_categorie'];
+	}
+
 	public function imgExists($i){
 		$db=parent::connect();
 

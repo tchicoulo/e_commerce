@@ -227,7 +227,7 @@
 	              <div class="cart-item-desc">
                   <input name="remove_id" type="hidden" value="'.$product['id'].'">
 	                <span class="product-remove"><button type="submit" class="fa fa-close" aria-hidden="true"></button></span>
-	                <span class="badge">Mango</span>
+	                <span class="badge">'.$product['product_category'].'</span>
 	                <h6>'.$product['product_name'].'</h6>
 	                <p class="price">'.$product['product_price'].'€</p>
 	              </div>

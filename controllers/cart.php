@@ -7,8 +7,9 @@ if(isset($_POST['id_product'])){
   $product = $product->get((int)$_POST['id_product']);
 
   $newProduct["id"] = $product->id();
-  $newProduct["product_name"] = $product->libelle(); //fetch product name from database
-  $newProduct["product_price"] = $product->prix();  //fetch product price from database
+  $newProduct["product_name"] = $product->libelle();
+  $newProduct["product_category"] = $product->getCategory();
+  $newProduct["product_price"] = $product->prix();
   $newProduct["product_img"] = $product->img1();
 
   if(isset($_SESSION["products"])){  //if session var already exist
