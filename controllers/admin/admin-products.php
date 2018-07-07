@@ -1,4 +1,5 @@
 <?php
+
 // PRODUCTS ADMINISTRATION CONTROLLER
 
 if(isset($action) && $action == 'showproducts'){
@@ -10,9 +11,9 @@ if(isset($action) && $action == 'showproducts'){
   $id_Categorie = (isset($_POST['id_Categorie'])) ?  $_POST['id_Categorie'] : 1;
   $stock = (isset($_POST['stock'])) ?  $_POST['stock'] : 0;
   $prix = (isset($_POST['prix'])) ?  $_POST['prix'] : 0;
-  $img1 = (isset($_FILES['img1']) && $_FILES['img1']['name'] != '') ?  '/sheekstore/e_commerce/img/pics_products/'.$_FILES['img1']['name'] : '/sheekstore/e_commerce/img/logo.png';
-  $img2 = (isset($_FILES['img2']) && $_FILES['img2']['name'] != '') ?  '/sheekstore/e_commerce/img/pics_products/'.$_FILES['img2']['name'] : '/sheekstore/e_commerce/img/logo.png';
-  $img3 = (isset($_FILES['img3']) && $_FILES['img3']['name'] != '') ?  '/sheekstore/e_commerce/img/pics_products/'.$_FILES['img3']['name'] : '/sheekstore/e_commerce/img/logo.png';
+  $img1 = (isset($_FILES['img1']) && $_FILES['img1']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/': '/sheekstore/e_commerce/img/logo.png';
+  $img2 = (isset($_FILES['img2']) && $_FILES['img2']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/': '/sheekstore/e_commerce/img/logo.png';
+  $img3 = (isset($_FILES['img3']) && $_FILES['img3']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/': '/sheekstore/e_commerce/img/logo.png';
 
 
   // Création d'un objet ProductsModel
@@ -47,9 +48,9 @@ else if(isset($action) && $action == 'addproduct'){
   $id_Categorie = 1;
   $stock = 0;
   $prix = 0;
-  $img1 = 'img/logo.png';
-  $img2 = 'img/logo.png';
-  $img3 = 'img/logo.png';
+  $img1 = '/sheekstore/e_commerce/img/logo.png';
+  $img2 = '/sheekstore/e_commerce/img/logo.png';
+  $img3 = '/sheekstore/e_commerce/img/logo.png';
 
 }
 
@@ -82,6 +83,8 @@ else if(isset($action) && $action == 'deleteproduct'){
 
   if($method == 'POST' && isset($args[0])){
     $result = $product->delete((int)$args[0]); // Suppression d'un produit
+
+    // AJOUTER LE DELETE DES IMAGES AVEC UNLINK
   }
 
   $adminList= $product->getAll();
