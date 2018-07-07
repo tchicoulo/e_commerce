@@ -10,9 +10,9 @@ if(isset($action) && $action == 'showproducts'){
   $id_Categorie = (isset($_POST['id_Categorie'])) ?  $_POST['id_Categorie'] : 1;
   $stock = (isset($_POST['stock'])) ?  $_POST['stock'] : 0;
   $prix = (isset($_POST['prix'])) ?  $_POST['prix'] : 0;
-  $img1 = (isset($_FILES['img1']) && $_FILES['img1']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/'.$_FILES['img1']['name'] : '/sheekstore/e_commerce/img/logo.png';
-  $img2 = (isset($_FILES['img2']) && $_FILES['img2']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/'.$_FILES['img2']['name'] : '/sheekstore/e_commerce/img/logo.png';
-  $img3 = (isset($_FILES['img3']) && $_FILES['img3']['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/'.$_FILES['img3']['name'] : '/sheekstore/e_commerce/img/logo.png';
+  $img1 = (isset($_FILES['img1']) && $_FILES['img1']['name'] != '') ?  '/sheekstore/e_commerce/img/pics_products/'.$_FILES['img1']['name'] : '/sheekstore/e_commerce/img/logo.png';
+  $img2 = (isset($_FILES['img2']) && $_FILES['img2']['name'] != '') ?  '/sheekstore/e_commerce/img/pics_products/'.$_FILES['img2']['name'] : '/sheekstore/e_commerce/img/logo.png';
+  $img3 = (isset($_FILES['img3']) && $_FILES['img3']['name'] != '') ?  '/sheekstore/e_commerce/img/pics_products/'.$_FILES['img3']['name'] : '/sheekstore/e_commerce/img/logo.png';
 
 
   // Création d'un objet ProductsModel

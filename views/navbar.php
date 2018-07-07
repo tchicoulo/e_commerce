@@ -103,10 +103,6 @@
       <!-- Modal SignUp Form End -->
 
       <!-- Modal SignIn Form-->
-<<<<<<< HEAD
-
-=======
->>>>>>> 42201bce69932a6f69ad49d91df4451bb571305e
 
       <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="signin" aria-hidden="true" data-backdrop="false">
 
@@ -218,9 +214,9 @@
 
         <!-- Cart List Area -->
         <div class="cart-list">
-        <?php 
+        <?php
         if(isset($_SESSION["products"])){
-	        foreach ($_SESSION["products"] as $product){		
+	        foreach ($_SESSION["products"] as $product){
 	          echo '<!-- Single Cart Item -->
 	          <div class="single-cart-item">
 	            <a href="#" class="product-image">
@@ -237,7 +233,7 @@
 	            </a>
 	          </div>';
 	      	}
-        
+
         echo '<!-- Cart Summary -->
         <div class="cart-amount-summary">
 
