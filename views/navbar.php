@@ -213,36 +213,37 @@
       <div class="cart-content d-flex">
 
         <!-- Cart List Area -->
-        <div class="cart-list">
         <?php
-        if(isset($_SESSION["products"])){
+        if(isset($_SESSION["products"]) && count($_SESSION["products"]) != 0){
+          echo '<div class="cart-list">';
+
 	        foreach ($_SESSION["products"] as $product){
 	          echo '<!-- Single Cart Item -->
 	          <div class="single-cart-item">
+              <form class="form-product" action="/sheekstore/e_commerce/index.php/cart" method="post">
 	            <a href="#" class="product-image">
-	              <img src="/sheekstore/e_commerce/img/product-img/product-1.jpg" class="cart-thumb" alt="">
+	              <img src="'.$product['product_img'].'" class="cart-thumb" alt="product image">
 	              <!-- Cart Item Desc -->
 	              <div class="cart-item-desc">
-	                <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                  <input name="remove_id" type="hidden" value="'.$product['id'].'">
+	                <span class="product-remove"><button type="submit" class="fa fa-close" aria-hidden="true"></button></span>
 	                <span class="badge">Mango</span>
 	                <h6>'.$product['product_name'].'</h6>
-	                <p class="size">Size: S</p>
-	                <p class="color">Color: Red</p>
-	                <p class="price">$45.00</p>
+	                <p class="price">'.$product['product_price'].'€</p>
 	              </div>
 	            </a>
+              </form>
 	          </div>';
 	      	}
+        echo '</div>';
 
         echo '<!-- Cart Summary -->
         <div class="cart-amount-summary">
 
           <h2>Summary</h2>
           <ul class="summary-table">
-            <li><span>subtotal:</span> <span>$274.00</span></li>
             <li><span>delivery:</span> <span>Free</span></li>
-            <li><span>discount:</span> <span>-15%</span></li>
-            <li><span>total:</span> <span>$232.00</span></li>
+            <li><span>total:</span> <span>'.$_SESSION["total"].'€</span></li>
           </ul>
           <div class="checkout-btn mt-100">
             <a href="checkout.html" class="btn essence-btn">check out</a>
@@ -256,11 +257,11 @@
     		<h2>Summary</h2>
             <ul class="summary-table">
             <li><span>Le panier est vide</span></li>
+            <li><img src="/sheekstore/e_commerce/img/cart_empty.gif" /></li>
           </ul>
         </div>';
     }
     ?>
-    	</div>
       </div>
     </div>
     <!-- ##### Right Side Cart End ##### -->

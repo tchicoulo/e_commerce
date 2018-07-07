@@ -4,7 +4,6 @@ function uploadImg(){
   $return = false;
 
   for($i = 1; $i < 4; $i++){ // On répète 3 fois pour les 3 images
-    echo 'bla<br/>';
     $allowedExts = array("gif","jpg","jpeg","png");
     $temp = explode(".",$_FILES['img'.$i]['name']);
     $extension = end($temp);
