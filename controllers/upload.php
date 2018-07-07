@@ -1,5 +1,7 @@
 <?php
 
+
+
 // image resizing function
 
 function fn_resize($image_resource_id,$width,$height) {
@@ -45,7 +47,7 @@ function uploadImg(){
           $target_layer = fn_resize($image_resource_id,$source_properties[0],$source_properties[1]);
           imagejpeg($target_layer,"img/product-img/".$libelle.$i.".jpg");
 
-          $imgname = $libelle.$i.".jpg";
+          $imgname = $libelle.$i.".jpg"; // guillaume contact moi je t'expliquerai pourquoi les fichiers ne s'ajoutent pas à la bdd
 
           }
           elseif( $image_type == IMAGETYPE_GIF )  {
