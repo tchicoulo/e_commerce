@@ -23,8 +23,7 @@ function uploadImg($imgs){
 
   for ($i = 1; $i < 4; $i++){ // On répète 3 fois pour les 3 images
     $allowedExts = array("gif","jpg","jpeg","png");
-    $temp = explode(".",$_FILES['img'.$i]['name']);
-    $extension = end($temp);
+    $extension = getExtension($_FILES['img'.$i]['name']);;
     if((($_FILES['img'.$i]['type'] == 'image/gif')
     || ($_FILES['img'.$i]['type'] == 'image/jpeg')
     || ($_FILES['img'.$i]['type'] == 'image/jpg')
@@ -39,6 +38,8 @@ function uploadImg($imgs){
         if (file_exists($imgs[$i])){
           $return = false;
         } else {
+          $temp = explode("/e_commerce/",$imgs[$i]);
+          $imgName = end($temp);
 
           $file = $_FILES['img'.$i]['tmp_name'];
           $source_properties = getimagesize($file);
@@ -48,22 +49,22 @@ function uploadImg($imgs){
 
             $image_resource_id = imagecreatefromjpeg($file);
             $target_layer = fn_resize($image_resource_id,$source_properties[0],$source_properties[1]);
-            imagejpeg($target_layer, $imgs[$i]);
+            imagejpeg($target_layer, $imgName);
           }
           elseif( $image_type == IMAGETYPE_GIF )  {
 
             $image_resource_id = imagecreatefromgif($file);
             $target_layer = fn_resize($image_resource_id,$source_properties[0],$source_properties[1]);
-            imagegif($target_layer, $imgs[$i]);
+            imagegif($target_layer, $imgName);
           }
           elseif( $image_type == IMAGETYPE_PNG ) {
 
             $image_resource_id = imagecreatefrompng($file);
             $target_layer = fn_resize($image_resource_id,$source_properties[0],$source_properties[1]);
-            imagepng($target_layer, $imgs[$i]);
+            imagepng($target_layer, $imgName);
           }
 
-          move_uploaded_file($_FILES['img'.$i]['tmp_name'], $imgs[$i]);
+          move_uploaded_file($_FILES['img'.$i]['tmp_name'], $imgName);
           $return = true;
         }
       }
