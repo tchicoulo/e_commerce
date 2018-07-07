@@ -63,8 +63,7 @@ function uploadImg($imgs){
             $target_layer = fn_resize($image_resource_id,$source_properties[0],$source_properties[1]);
             imagepng($target_layer, $imgName);
           }
-
-          move_uploaded_file($_FILES['img'.$i]['tmp_name'], $imgName);
+          
           $return = true;
         }
       }
