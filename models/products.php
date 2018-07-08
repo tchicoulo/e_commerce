@@ -193,18 +193,18 @@ class ProductsModel extends Model {
 		return $category['nom_categorie'];
 	}
 
-	//Fonction pour recuperer la categorie de l'objet courant
+	//Fonction pour recuperer la liste des produits apartenant à une catégorie en fonction de son id ou de son nom
 	public function getByCategory($data){
 		$db=parent::connect();
 
 		if(is_string($data)){
-			$sql = "SELECT * FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id WHERE categorie.nom_categorie = ".$data;
+			$sql = "SELECT produit.*,categorie.nom_categorie FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id WHERE categorie.nom_categorie = ".$data;
 		}
 		elseif(is_int($data)){
-			$sql = "SELECT * FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id WHERE produit.id_Categorie = ".$data;
+			$sql = "SELECT produit.*,categorie.nom_categorie FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id WHERE produit.id_Categorie = ".$data;
 		}
 		else{
-			$sql = "SELECT * FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id";
+			$sql = "SELECT produit.*,categorie.nom_categorie FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id";
 		}
 
 		$query = $db->prepare($sql);

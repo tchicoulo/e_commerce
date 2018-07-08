@@ -131,6 +131,7 @@
                                         <div class="hover-content">
                                             <!-- Add to Cart -->
                                             <div class="add-to-cart-btn">
+																							<input name="product_category" type="hidden" value="'.$productsCategory.'">
                                               <input name="id_product" type="hidden" value="'.$product['id'].'">
                                           		<button type="submit" class="btn essence-btn">Ajouter au panier</button>
                                             </div>

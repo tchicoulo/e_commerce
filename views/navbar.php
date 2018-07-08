@@ -175,7 +175,7 @@
         <span>';
 
         if(isset($_SESSION["products"])){
-            echo count($_SESSION["products"]);
+            echo $cartCount;
         }else{
             echo 0;
         }
@@ -202,7 +202,7 @@
           <?php
           // Affichage du nombre d'article dans le panier
           if(isset($_SESSION["products"])){
-            echo count($_SESSION["products"]);
+            echo $cartCount;
           }else{
             echo 0;
           }
@@ -229,6 +229,7 @@
 	                <span class="product-remove"><button type="submit" class="fa fa-close" aria-hidden="true"></button></span>
 	                <span class="badge">'.$product['product_category'].'</span>
 	                <h6>'.$product['product_name'].'</h6>
+                  <h6>Quantité: '.$product['quantity'].'</h6>
 	                <p class="price">'.$product['product_price'].'€</p>
 	              </div>
 	            </a>
@@ -247,6 +248,9 @@
           </ul>
           <div class="checkout-btn mt-100">
             <a href="/sheekstore/e_commerce/index.php/checkout" class="btn essence-btn">check out</a>
+          </div>
+          <div class="checkout-btn mt-30">
+            <a href="/sheekstore/e_commerce/index.php/cart/emptycart" class="btn essence-btn">empty cart</a>
           </div>
         </div>';
 

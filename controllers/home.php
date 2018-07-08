@@ -15,12 +15,28 @@ $categoriesListView = $category -> getAll();
 $product = new ProductsModel(['id' => '' ,'libelle' => '', 'marque' => '', 'id_Categorie' => 0]);
 
 if(isset($action) && $action == 'getbycategory' ){
-  $productsCount = $product->count((int)$args[0]);
-  $ProductsListView = $product->getByCategory((int)$args[0]);
+  $productsCategory = (int)$args[0];
+  $productsCount = $product->count($productsCategory);
+  $ProductsListView = $product->getByCategory($productsCategory);
 }
 else{
+  $productsCategory = 0;
   $productsCount = $product->count('all');
   $ProductsListView = $product->getAll();
+}
+
+// Si l'utilisateur était sur une page categorie on le redirige vers la même page
+if(isset($_POST['product_category']) && $_POST['product_category'] != 0){
+  header("Location: ./home/getbycategory/".$_POST['product_category']);
+}
+
+// On compte combien il y a d'articles dans el panier
+$cartCount = 0;
+
+if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0){
+  foreach($_SESSION["products"] as $product){
+    $cartCount = $cartCount + $product['quantity'];
+  }
 }
 
 $content = "views/home.php";
