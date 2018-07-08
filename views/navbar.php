@@ -246,7 +246,7 @@
             <li><span>total:</span> <span>'.$_SESSION["total"].'€</span></li>
           </ul>
           <div class="checkout-btn mt-100">
-            <a href="checkout.html" class="btn essence-btn">check out</a>
+            <a href="/sheekstore/e_commerce/index.php/checkout" class="btn essence-btn">check out</a>
           </div>
         </div>';
 

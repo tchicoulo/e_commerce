@@ -136,7 +136,7 @@ class ProductsModel extends Model {
 		}
 		else{
 			// Si le paramètre est incorrect on retourne false
-			return false;
+			return 0;
 		}
 
 		$query -> execute ();
@@ -157,7 +157,7 @@ class ProductsModel extends Model {
 			return $this;
 		}
 		else{
-			return false; // Si il n'y a pas de resultat on retourne false
+			return 0; // Si il n'y a pas de resultat on retourne false
 		}
 	}
 
@@ -193,6 +193,27 @@ class ProductsModel extends Model {
 		return $category['nom_categorie'];
 	}
 
+	//Fonction pour recuperer la categorie de l'objet courant
+	public function getByCategory($data){
+		$db=parent::connect();
+
+		if(is_string($data)){
+			$sql = "SELECT * FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id WHERE categorie.nom_categorie = ".$data;
+		}
+		elseif(is_int($data)){
+			$sql = "SELECT * FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id WHERE produit.id_Categorie = ".$data;
+		}
+		else{
+			$sql = "SELECT * FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id";
+		}
+
+		$query = $db->prepare($sql);
+		$query ->execute();
+		$categoriesList = $query->fetchAll();
+
+		return $categoriesList;
+	}
+
 	public function imgExists($i){
 		$db=parent::connect();
 
@@ -222,14 +243,18 @@ class ProductsModel extends Model {
 			else{
 				$sql= "SELECT COUNT(*) FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id WHERE categorie.nom_categorie = ".$data;
 			}
-
-			$query= $db -> prepare ($sql);
-			$query -> execute ();
-			return $query -> fetch()[0];
+		}
+		elseif(is_int($data)){
+			$sql= "SELECT COUNT(*) FROM produit INNER JOIN categorie ON produit.id_Categorie = categorie.id WHERE produit.id_Categorie = ".$data;
 		}
 		else{
-			return false;
+			$sql= "SELECT COUNT(*) FROM produit";
 		}
+
+
+		$query= $db -> prepare ($sql);
+		$query -> execute ();
+		return $query -> fetch()[0];
 	}
 	// GETTERS //
 	public function id() { return $this->id; }

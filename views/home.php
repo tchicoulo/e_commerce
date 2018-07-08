@@ -34,54 +34,20 @@
                             <!--  Catagories  -->
                             <div class="catagories-menu">
                                 <ul id="menu-content2" class="menu-content collapse show">
-                                    <!-- Single Item -->
-                                    <li data-toggle="collapse" data-target="#clothing">
-                                        <a href="#">Womens</a>
-                                        <ul class="sub-menu collapse show" id="clothing">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">T-Shirts</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Single Item -->
-                                    <li data-toggle="collapse" data-target="#shoes" class="collapsed">
-                                        <a href="#">Kids</a>
-                                        <ul class="sub-menu collapse" id="shoes">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">T-Shirts</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Single Item -->
-                                    <li data-toggle="collapse" data-target="#accessories" class="collapsed">
-                                        <a href="#">Accessories</a>
-                                        <ul class="sub-menu collapse" id="accessories">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Mouses</a></li>
-                                            <li><a href="#">Pads</a></li>
-                                            <li><a href="#">PlayCards</a></li>
-                                            <li><a href="#">Mugs</a></li>
-                                            <li><a href="#">Bracelets</a></li>
-                                        </ul>
-                                    </li>
+                                  <li data-toggle="collapse" data-target="#clothing">
+                                      <a href="/sheekstore/e_commerce/index.php/home/">Tous les produits</a>
+                                  </li>
+                                    <?php
+                                      if(isset($categoriesListView)){
+                                        foreach($categoriesListView as $category){
+                                        echo '<!-- Single Item -->
+                                        <li data-toggle="collapse" data-target="#clothing">
+                                            <a href="/sheekstore/e_commerce/index.php/home/getbycategory/'.$category['id'].'">'.$category['nom_categorie'].'</a>
+                                        </li>';
+                                      }
+                                    }
+                                    ?>
                                 </ul>
-                            </div>
-                        </div>
-
-                        <!-- ##### Single Widget ##### -->
-                        <div class="widget price mb-50">
-                            <!-- Widget Title -->
-                            <h6 class="widget-title mb-30">Filter by</h6>
-                            <!-- Widget Title 2 -->
-                            <p class="widget-title2 mb-30">Price</p>
-
-                            <div class="widget-desc">
-                                <div class="slider-range">
-                                    <div data-min="49" data-max="360" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="49" data-value-max="360" data-label-result="Range:">
-                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                    </div>
-                                    <div class="range-price">Range: $49.00 - $360.00</div>
-                                </div>
                             </div>
                         </div>
 
