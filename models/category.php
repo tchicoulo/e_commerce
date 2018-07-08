@@ -28,7 +28,7 @@ class CategoriesModel extends Model {
 
 		// On teste d'abord si un produit est ajouté ou non.
 		if($this->exists($category->nom_categorie())){
-			return '<p class="red">La categorie '.$category->nom_categorie().' à déjà été ajouté.</p>';
+			return '<p class="red">La categorie '.$category->nom_categorie().' a déjà été ajoutée.</p>';
 		}
 		elseif($category->nom_categorie() == ''){
 			return '<p class="red">Veuillez ajouter une categorie nom vide.</p>';
@@ -40,7 +40,7 @@ class CategoriesModel extends Model {
 		$result = $query -> execute();
 
 		if($result){	// Si $result est vrai alors la requête c'est bien déroulé
-			return '<p class="green">La catégorie '.$category->nom_categorie().' à bien été ajouté.</p>';
+			return '<p class="green">La catégorie '.$category->nom_categorie().' a bien été ajoutée.</p>';
 		}
 		else{
 			return '<p class="red">Echec lors de l\'ajout de la catégorie '.$category->nom_categorie().'.</p>';
@@ -54,7 +54,7 @@ class CategoriesModel extends Model {
 
     // On teste d'abord si une catégorie est ajouté ou non.
     if($this->exists($category->nom_categorie())){
-      return '<p class="red">La categorie '.$category->nom_categorie().' à déjà été ajouté.</p>';
+      return '<p class="red">La categorie '.$category->nom_categorie().' a déjà été ajoutée.</p>';
     }
     elseif($category->nom_categorie() == ''){
       return '<p class="red">Veuillez ajouter une categorie nom vide.</p>';
@@ -67,7 +67,7 @@ class CategoriesModel extends Model {
     $result = $query -> execute ();
 
     if($result){	// Si $result est vrai alors la requête c'est bien déroulé
-      return '<p class="green">La catégorie '.$category->nom_categorie().' à bien été modifiée.</p>';
+      return '<p class="green">La catégorie '.$category->nom_categorie().' a bien été modifiée.</p>';
     }
     else{
       return '<p class="red">Echec lors de la modification de la catégorie '.$category->nom_categorie().'.</p>';
@@ -84,7 +84,7 @@ class CategoriesModel extends Model {
 			$query= $db -> prepare ($sql);
 			$query -> execute ();
 
-			return '<p class="green">La catégorie à bien été supprimé.</p>';
+			return '<p class="green">La catégorie a bien été supprimée.</p>';
 		}
 
 		return '<p class="red">Echec de la suppression de la catégorie.</p>';
