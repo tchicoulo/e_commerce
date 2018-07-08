@@ -1,9 +1,7 @@
 <?php
 	require_once "views/navbar.php";
 ?>
-
-
-	<body>
+<body>
 
  <!-- ##### Breadcumb Area Start ##### -->
     <div class="breadcumb_area bg-img" style="background-image: url(/sheekstore/e_commerce/img/bg-img/breadcumb.jpg);">
@@ -131,8 +129,7 @@
                                         <div class="hover-content">
                                             <!-- Add to Cart -->
                                             <div class="add-to-cart-btn">
-																							<input name="product_category" type="hidden" value="'.$productsCategory.'">
-                                              <input name="id_product" type="hidden" value="'.$product['id'].'">
+											<input name="id_product" type="hidden" value="'.$product['id'].'">
                                           		<button type="submit" class="btn essence-btn">Ajouter au panier</button>
                                             </div>
                                         </div>
