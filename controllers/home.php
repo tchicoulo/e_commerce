@@ -30,9 +30,8 @@ if(isset($_POST['product_category']) && $_POST['product_category'] != 0){
   header("Location: ./home/getbycategory/".$_POST['product_category']);
 }
 
-// On compte combien il y a d'articles dans el panier
+// On compte combien il y a d'articles dans le panier
 $cartCount = 0;
-
 if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0){
   foreach($_SESSION["products"] as $product){
     $cartCount = $cartCount + $product['quantity'];

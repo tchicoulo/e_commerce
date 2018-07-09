@@ -138,7 +138,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/sheekstore/e_commerce/img/core-img/user.svg" alt=""></a>
           <div class="dropdown-menu">
             <?php
-            if($_SESSION){
+            if(isset($_SESSION['email'])){
               echo '  <a href="#">'.$_SESSION['login'].'</a>
               <a href="/sheekstore/e_commerce/index.php/logout">LogOut</a>';
 
@@ -161,7 +161,7 @@
 
 
 
-      <?php if($_SESSION){
+      <?php if(isset($_SESSION['email'])){
 
         echo '
         <!-- Favourite Area -->
