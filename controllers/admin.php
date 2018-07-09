@@ -23,11 +23,9 @@ require_once "admin/admin-orders.php";
 require_once "admin/admin-users.php";
 
 
-<<<<<<< HEAD
-// On compte combien il y a d'articles dans le panier
-=======
+
 // How many item in cart
->>>>>>> 7f69cc2fdd16dd1660e9fd49b2dcac9bd46ea5de
+
 $cartCount = 0;
 if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0){
   foreach($_SESSION["products"] as $product){
