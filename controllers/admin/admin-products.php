@@ -17,9 +17,9 @@ if(isset($action) && $action == 'showproducts'){
   for ($i = 1; $i < 4; $i++){
       if(isset($_FILES['img'.$i]['name'])){
       $extension = getExtension($_FILES['img'.$i]['name']);
-      $imgs[$i] = (isset($_FILES['img'.$i]) && $_FILES['img'.$i]['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/'.$libelle.''.$i.'.'.$extension: '/sheekstore/e_commerce/img/logo.png';
+    $imgs[$i] = (isset($_FILES['img'.$i]) && $_FILES['img'.$i]['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/'.$libelle.''.$i.'.'.$extension: '/sheekstore/e_commerce/img/logo.png';
     }
-  }
+}
 
   // Création d'un objet ProductsModel
   $product =new ProductsModel(['id' => $id ,'libelle' => $libelle, 'marque' => $marque, 'description' => $description, 'id_Categorie' => $id_Categorie, 'stock' => $stock, 'prix' => $prix,
