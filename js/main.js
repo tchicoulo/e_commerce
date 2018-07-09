@@ -1,5 +1,3 @@
-$(".connected").toggleClass("hidden");
-
 // AJAX CODE FOR CART UPDATE
 //Ajouter un produit au panier
 // $(".form-product").submit(function(e){ //user clicks form submit button
