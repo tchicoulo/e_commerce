@@ -3,7 +3,7 @@
 require_once "models/products.php";
 require_once "models/category.php";
 
-//définition des variables globales
+// Global Variables
 global $action;
 global $args;
 global $method;
