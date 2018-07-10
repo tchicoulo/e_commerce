@@ -1,3 +1,7 @@
 #exclude the model.php file from repository allowing local Database configuration
+<<<<<<< HEAD
 /models/model.php
 **.DS_STORE
+=======
+/models/model.php
+>>>>>>> 8469237287b7d2c9b95c91291b8e1779fbf85d8f

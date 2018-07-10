@@ -1,6 +1,5 @@
 <?php
 
-
 // On compte combien il y a d'articles dans le panier
 $cartCount = 0;
 if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0){
@@ -11,4 +10,5 @@ if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0){
 
 $content = "views/checkout.php";
 require_once "views/layout.php";
+
 ?>

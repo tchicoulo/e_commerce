@@ -24,8 +24,8 @@
         <div class="single_product_thumb clearfix">
             <div class="product_thumbnail_slides owl-carousel">
                 <img src="/sheekstore/e_commerce/img/product-img/Tira1.jpg" alt="">
-                <img src="img/product-img/Tira2.jpeg" alt="">
-                <img src="img/product-img/Tira3.jpg" alt="">
+                <img src="/sheekstore/e_commerce/img/product-img/Tira2.jpeg" alt="">
+                <img src="/sheekstore/e_commerce/img/product-img/Tira3.jpg" alt="">
             </div>
         </div>
 
