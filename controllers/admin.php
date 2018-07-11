@@ -23,15 +23,6 @@ require_once "admin/admin-orders.php";
 require_once "admin/admin-users.php";
 
 
-
-function secure($string) {
-
-
-htmlspecialchars(preg_replace('/ /', '', $string));
-
-}
-
-
 // How many item in cart
 
 
