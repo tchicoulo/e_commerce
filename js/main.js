@@ -28,3 +28,5 @@
 //     $("#shopping-cart-results").html('<img src="images/ajax-loader.gif">'); //show loading image
 //     $("#shopping-cart-results" ).load( "../controllers/cart.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
 // });
+
+

@@ -27,7 +27,10 @@
 
 	?>
 
+
 		<script src="/sheekstore/e_commerce/js/jquery-3.3.1.min.js"></script>
+		<script src="/sheekstore/e_commerce/js/owl.carousel.js"></script>
+		<script src="/sheekstore/e_commerce/js/nice-select.js"></script>
 		<script src="/sheekstore/e_commerce/js/popper.min.js"></script>
 		<script src="/sheekstore/e_commerce/js/bootstrap.min.js"></script>
 		<script src="/sheekstore/e_commerce/js/active.js"></script>
