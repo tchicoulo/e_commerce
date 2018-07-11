@@ -40,10 +40,6 @@ require_once "views/navbar.php";
                                 <input type="text" class="form-control" id="last_name" value="" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="company">Company Name</label>
-                                <input type="text" class="form-control" id="company" value="">
-                            </div>
-                            <div class="col-12 mb-3">
                                 <label for="country">Country <span>*</span></label>
                                 <select class="w-100" id="country">
                                     <option value="usa">United States</option>

@@ -26,6 +26,7 @@ require_once "admin/admin-users.php";
 
 // How many item in cart
 
+
 $cartCount = 0;
 if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0){
   foreach($_SESSION["products"] as $product){
