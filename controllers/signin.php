@@ -16,10 +16,14 @@ if(isset($_POST['signin'])){
 
 	// Si le client existe et que le mot de passe correspond
 	if($client && (password_verify($password, $client->mot_de_passe()))){
+		// On définis les variables de session de l'utilisateur pour le connecter
 		$_SESSION['login'] = $client->nom_client();
 		$_SESSION['email'] = $client->email();
 		$_SESSION['admin'] = $client->admin();
-
+		$_SESSION['adresse'] = $client->adresse();
+		$_SESSION['nom'] = $client->nom();
+		$_SESSION['prenom'] = $client->prenom();
+		$_SESSION['telephone'] = $client->telephone();
 	}
 
 

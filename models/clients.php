@@ -35,11 +35,11 @@ class ClientsModel extends Model {
 		$db=parent::connect();
 
 		// On teste d'abord si l'utilisateur existe déjà ou si il est vide
-		if($this->exists($client->nom_client())){
-			return '<p class="red">Le nom d\'utilisateur '.$client->nom_client().' est déjà utilisé.</p>';
+		if($this->exists($client->email())){
+			return '<p class="red">L\'adresse email '.$client->email().' est déjà utilisé.</p>';
 		}
-		elseif($client->nom_client() == ''){
-			return '<p class="red">Le nom d\'utilisateur est vide.</p>';
+		elseif($client->email() == ''){
+			return '<p class="red">L\'adresse email est vide.</p>';
 		}
 
 		$sql= "INSERT INTO client SET nom_client = :nom_client, mot_de_passe = :mot_de_passe, civilite = :civilite, prenom = :prenom, nom = :nom, adresse = :adresse, telephone = :telephone, email = :email";
@@ -161,7 +161,7 @@ class ClientsModel extends Model {
 		$db=parent::connect();
 
 		if(is_string($data)){
-			$sql = "SELECT * FROM client WHERE nom_client ='".$data."'";
+			$sql = "SELECT * FROM client WHERE email ='".$data."'";
 			$query = $db->prepare($sql);
 			$query ->execute();
 			$listClient = $query->fetchAll();

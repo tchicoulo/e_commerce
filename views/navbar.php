@@ -83,13 +83,13 @@
                 <form id="newuser" action="/sheekstore/e_commerce/index.php/signup" method="post">
 
 
-                  <div>Login   :</div><input type="text" name="login"><br/>
+                  <div>Login   :</div><input type="text" name="login" required><br/>
 
                   <div>Email   :</div><input type="email" name="email" required><br/>
 
                   <div>Password:</div><input type="password" name="password" required><br/>
 
-                  <div>Confirm Password:</div><input type="password" name="confirm"><br/>
+                  <div>Confirm Password:</div><input type="password" name="confirm" required><br/>
 
 
                   <br><input type="submit" name="signup" value="Valider">
@@ -230,7 +230,7 @@
 	                <span class="badge">'.$product['product_category'].'</span>
 	                <h6>'.$product['product_name'].'</h6>
                   <h6>Quantité: '.$product['quantity'].'</h6>
-	                <p class="price">'.$product['product_price'].'€</p>
+	                <p class="price">'.$product['product_price']*$product['quantity'].'€</p>
 	              </div>
 	            </a>
               </form>
