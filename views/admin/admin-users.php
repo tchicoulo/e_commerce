@@ -43,7 +43,6 @@ else if($action =='adduser' || $action =='edituser'){
   echo '<form class="form-signin" action="/sheekstore/e_commerce/index.php/admin/showusers" method="post">
   <h1 class="h3 mb-3 font-weight-normal">'.$verb.' un utilisateur</h1>
   <input type="hidden" name="id" value="'.$id.'">
-  <input type="text" class="form-control" placeholder="Nom d\'utilisateur" name="nom_client" value="'.$nom_client.'" required autofocus><br/>
   <label for="inputName" class="sr-only">Nom d\'utilisateur</label>
   <input type="text" class="form-control" placeholder="Nom d\'utilisateur" name="nom_client" value="'.$nom_client.'" required autofocus><br/>
   <label for="inputBrand" class="sr-only">E-mail</label>
