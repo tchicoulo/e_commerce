@@ -110,7 +110,9 @@ require_once "views/navbar.php";
                   $subtotal += ($product['product_price']*$product['quantity']);
                 }
               }
-
+              if(!isset($subtotal)){
+                $subtotal = 0;
+              }
               echo '<li><span>Sous-total</span> <span>'.$subtotal.'€</span></li>
               <li><span>Frais de livraison</span> <span>Gratuit</span></li>
               <li><span>Total</span> <span>'.$subtotal.'€</span></li>';
@@ -145,7 +147,7 @@ require_once "views/navbar.php";
               </div>
             </div>
 
-            <input type="submit" class="btn essence-btn" value="Passer la commande">
+            <input type="submit" class="btn essence-btn" value="Passer la commande" name="order">
           </form>
         </div>
       </div>
