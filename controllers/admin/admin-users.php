@@ -3,14 +3,14 @@
 
 if (isset($action) && $action == "showusers") {
 
-  $id = (isset($_POST['id'])) ?  $_POST['id'] : 0;
+  $id         = (isset($_POST['id'])) ?  $_POST['id'] : 0;
   $nom_client = (isset($_POST['nom_client'])) ?  $_POST['nom_client'] : 'default';
-  $password = (isset($_POST['password'])) ?  password_hash($_POST['password'], PASSWORD_DEFAULT) : '';
-  $prenom = (isset($_POST['prenom'])) ?  $_POST['prenom'] : 'default';
-  $nom = (isset($_POST['nom'])) ?  $_POST['nom'] : 'default';
-  $adresse = (isset($_POST['adresse'])) ?  $_POST['adresse'] : 'default';
-  $telephone = (isset($_POST['telephone'])) ?  $_POST['telephone'] : 'default';
-  $email = (isset($_POST['email'])) ?  $_POST['email'] : 'default';
+  $password   = (isset($_POST['password'])) ?  password_hash($_POST['password'], PASSWORD_DEFAULT) : '';
+  $prenom     = (isset($_POST['prenom'])) ?  $_POST['prenom'] : 'default';
+  $nom        = (isset($_POST['nom'])) ?  $_POST['nom'] : 'default';
+  $adresse    = (isset($_POST['adresse'])) ?  $_POST['adresse'] : 'default';
+  $telephone  = (isset($_POST['telephone'])) ?  $_POST['telephone'] : 'default';
+  $email      = (isset($_POST['email'])) ?  $_POST['email'] : 'default';
 
   $client =new ClientsModel(['id' => $id ,'nom_client' => $nom_client, 'mot_de_passe' => $password, 'civilite' => '', 'prenom' => $prenom, 'nom' => $nom, 'adresse' => $adresse, 'telephone' => $telephone,'email' => $email,
   'admin' => '']);
@@ -27,15 +27,15 @@ if (isset($action) && $action == "showusers") {
 }
 else if(isset($action) && $action == 'adduser'){
   // setting defaults values
-  $verb = 'Ajouter';
-  $id = 0;
+  $verb       = 'Ajouter';
+  $id         = 0;
   $nom_client = '';
-  $password = '';
-  $prenom = '';
-  $nom = '';
-  $adresse = '';
-  $telephone = '';
-  $email = '';
+  $password   = '';
+  $prenom     = '';
+  $nom        = '';
+  $adresse    = '';
+  $telephone  = '';
+  $email      = '';
 }
 
 else if(isset($action) && $action == 'edituser'){
@@ -45,15 +45,15 @@ else if(isset($action) && $action == 'edituser'){
     $client = $client->get((int)$args[0]);
 
     // setting product values
-    $verb = 'Modifier';
-    $id = $client->id();
+    $verb       = 'Modifier';
+    $id         = $client->id();
     $nom_client = $client->nom_client();
-    $password = 'default';
-    $prenom = $client->prenom();
-    $nom = $client->nom();
-    $adresse = $client->adresse();
-    $telephone = $client->telephone();
-    $email = $client->email();
+    $password   = 'default';
+    $prenom     = $client->prenom();
+    $nom        = $client->nom();
+    $adresse    = $client->adresse();
+    $telephone  = $client->telephone();
+    $email      = $client->email();
   }
 }
 else if (isset($action) && $action == "deleteuser") {
@@ -63,6 +63,6 @@ else if (isset($action) && $action == "deleteuser") {
     $result = $client->delete((int)$args[0]); // Suppression d'un utilisateur
   }
 
-  $ClientsListView= $client->getAll();
+  $ClientsListView = $client->getAll();
 }
 ?>

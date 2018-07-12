@@ -103,10 +103,11 @@
                         <div class="row products-area">
 
 						<?php
+
 						foreach($ProductsListView as $product) {
                             echo '<!-- Single Product -->
                             <div class="col-12 col-sm-6 col-lg-4">
-								                <form class="form-product" action="/sheekstore/e_commerce/index.php/cart" method="post">
+							 <form class="form-product" action="/sheekstore/e_commerce/index.php/cart" method="post">
                                 <div class="single-product-wrapper">
                                     <!-- Product Image -->
                                     <div class="product-img">
@@ -131,6 +132,7 @@
                                             <div class="add-to-cart-btn">
 											<input name="id_product" type="hidden" value="'.$product['id'].'">
                                           		<button type="submit" class="btn essence-btn">Ajouter au panier</button>
+                                                <button type="submit" class="btn essence-btn">+ de détails</button>
                                             </div>
                                         </div>
                                     </div>

@@ -1,5 +1,6 @@
 <?php
 
+
 // PRODUCTS ADMINISTRATION CONTROLLER
 
 if(isset($action) && $action == 'showproducts'){
@@ -69,17 +70,17 @@ else if(isset($action) && $action == 'editproduct'){
     $product = $product->get((int)$args[0]);
 
     // setting product values
-    $verb = 'Modifier';
-    $id = $product->id();
-    $libelle = $product->libelle();
-    $marque = $product->marque();
-    $description = $product->description();
+    $verb         = 'Modifier';
+    $id           = $product->id();
+    $libelle      = $product->libelle();
+    $marque       = $product->marque();
+    $description  = $product->description();
     $id_Categorie = $product->id_Categorie();
-    $stock = $product->stock();
-    $prix = $product->prix();
-    $img1 = $product->img1();
-    $img2 = $product->img2();
-    $img3 = $product->img3();
+    $stock        = $product->stock();
+    $prix         = $product->prix();
+    $img1         = $product->img1();
+    $img2         = $product->img2();
+    $img3         = $product->img3();
   }
 }
 

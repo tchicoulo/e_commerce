@@ -9,12 +9,12 @@ if(isset($_POST['id_product'])){
 
   if($product){
 
-    $newProduct["id"] = $product->id();
-    $newProduct["product_name"] = $product->libelle();
+    $newProduct["id"]               = $product->id();
+    $newProduct["product_name"]     = $product->libelle();
     $newProduct["product_category"] = $product->getCategory();
-    $newProduct["product_price"] = $product->prix();
-    $newProduct["product_img"] = $product->img1();
-    $newProduct["quantity"] = 0;
+    $newProduct["product_price"]    = $product->prix();
+    $newProduct["product_img"]      = $product->img1();
+    $newProduct["quantity"]         = 0;
 
     if(isset($_SESSION["products"])){  //if session var already exist
       if(isset($_SESSION["products"][$_POST['id_product']])) //check item exist in products array

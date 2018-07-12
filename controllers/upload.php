@@ -2,8 +2,8 @@
 
 // image resizing function
 function fn_resize($image_resource_id,$width,$height) {
-  $target_width =300;
-  $target_height =450;
+  $target_width =1000;
+  $target_height =971;
   $target_layer=imagecreatetruecolor($target_width,$target_height);
   imagecopyresampled($target_layer,$image_resource_id,0,0,0,0,$target_width,$target_height, $width,$height);
   return $target_layer;
@@ -38,7 +38,7 @@ function uploadImg($imgs){
         if (file_exists($imgs[$i])){
           $return = false;
         } else {
-          $temp = explode("/e_commerce/",$imgs[$i]);
+          $temp = preg_replace('/ /', '',explode("/e_commerce/",$imgs[$i]));
           $imgName = end($temp);
 
           $file = $_FILES['img'.$i]['tmp_name'];

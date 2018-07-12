@@ -17,26 +17,37 @@
     </div>
     <!-- ##### Breadcumb Area End ##### -->
 
+
+
+    <?php // boucle à ajouter
+
+
+
+    
+    echo '
+
+
+
     <!-- ##### Single Product Details Area Start ##### -->
     <section class="single_product_details_area d-flex align-items-center">
 
         <!-- Single Product Thumb -->
         <div class="single_product_thumb clearfix">
             <div class="product_thumbnail_slides owl-carousel">
-                <img src="/sheekstore/e_commerce/img/product-img/Tira1.jpg" alt="">
-                <img src="/sheekstore/e_commerce/img/product-img/Tira2.jpeg" alt="">
-                <img src="/sheekstore/e_commerce/img/product-img/Tira3.jpg" alt="">
+                <img src="'.$product['img1'].'" alt="">
+                <img src="'.$product['img2'].'" alt="">
+                <img src="'.$product['img3'].'" alt="">
             </div>
         </div>
 
         <!-- Single Product Description -->
         <div class="single_product_desc clearfix">
-            <span>mango</span>
+            <span>'.$product['marque'].'</span>
             <a href="cart.html">
-                <h2>One Shoulder Glitter Midi Dress</h2>
+                <h2>'.$product['libelle'].'</h2>
             </a>
-            <p class="product-price"><span class="old-price">$65.00</span> $49.00</p>
-            <p class="product-desc">Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin.</p>
+            <p class="product-price">'.$product['prix'].'</p>
+            <p class="product-desc">'.$product['description'].'</p>
 
             <!-- Form -->
             <form class="cart-form clearfix" method="post">
@@ -58,7 +69,7 @@
                 <!-- Cart & Favourite Box -->
                 <div class="cart-fav-box d-flex align-items-center">
                     <!-- Cart -->
-                    <button type="submit" name="addtocart" value="5" class="btn essence-btn">Add to cart</button>
+                    <button type="submit" name="addtocart" value="5" class="btn essence-btn">Ajouter au Panier</button>
                     <!-- Favourite -->
                     <div class="product-favourite ml-4">
                         <a href="#" class="favme fa fa-heart"></a>
@@ -67,9 +78,8 @@
             </form>
         </div>
     </section>
-    <!-- ##### Single Product Details Area End ##### -->
+    <!-- ##### Single Product Details Area End ##### --> ';
 
-<?php
 require_once "views/footer.php"
 ?>
     </body>
