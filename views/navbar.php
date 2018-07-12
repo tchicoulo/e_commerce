@@ -24,28 +24,26 @@
             <li><a href="#">Shop</a>
               <div class="dropdown">
                 <ul class="single-mega cn-col-4">
-                  <li class="title">Women's Collection</li>
-                  <li><a href="shop.html">T-shirts</a></li>
-                </ul>
-                <ul class="single-mega cn-col-4">
-                  <li class="title">Kid's Collection</li>
-                  <li><a href="shop.html">T-shirts</a></li>
-                </ul>
-                <ul class="single-mega cn-col-4">
-                  <li class="title">Accessories</li>
-                  <li><a href="shop.html">Mouses</a></li>
-                  <li><a href="shop.html">Pads</a></li>
-                  <li><a href="shop.html">PlayCards</a></li>
-                  <li><a href="shop.html">Mugs</a></li>
-                  <li><a href="shop.html">Bracelets</a></li>
+                  <a href="/sheekstore/e_commerce/index.php/home/">Tous les produits</a>
+                    <?php
+
+                        if(isset($categoriesListView)){
+                          foreach($categoriesListView as $category){
+                                  echo '<!-- Single Item -->
+                                        <li data-toggle="collapse" data-target="#clothing">
+                                        <a href="/sheekstore/e_commerce/index.php/home/getbycategory/'.$category['id'].'">'.$category['nom_categorie'].'</a>
+                                        </li>';
+                                      }
+                                    }
+                                    ?>
                 </ul>
                 <div class="single-mega cn-col-4">
-                  <img src="/sheekstore/e_commerce/img/bg-img/bg-6.jpg" alt="">
+                  <img src="/sheekstore/e_commerce/img/bg-img/sheeks.png" alt="">
                 </div>
               </div>
             </li>
-            <li><a href="blog.html">News</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact</a></li>
           </ul>
         </div>
         <!-- Nav End -->

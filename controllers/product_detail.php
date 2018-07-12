@@ -16,9 +16,11 @@ if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0){
 }
 
 
+//$_GET['product'];
+
 $product = new ProductsModel(['id' => '' ,'libelle' => '', 'marque' => '', 'id_Categorie' => 0]);
 
-$ProductsListView = $product->getAll();
+$product = $product->get((int)$_GET['product']);
 
 
 
