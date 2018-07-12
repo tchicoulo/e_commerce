@@ -38,12 +38,12 @@
                                     ?>
                 </ul>
                 <div class="single-mega cn-col-4">
-                  <img src="/sheekstore/e_commerce/img/bg-img/bg-6.jpg" alt="">
+                  <img src="/sheekstore/e_commerce/img/bg-img/sheeks.png" alt="">
                 </div>
               </div>
             </li>
-            <li><a href="blog.html">News</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact</a></li>
           </ul>
         </div>
         <!-- Nav End -->

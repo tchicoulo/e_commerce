@@ -18,7 +18,7 @@ if(isset($action) && $action == 'showproducts'){
   for ($i = 1; $i < 4; $i++){
       if(isset($_FILES['img'.$i]['name'])){
       $extension = getExtension($_FILES['img'.$i]['name']);
-    $imgs[$i] = (isset($_FILES['img'.$i]) && $_FILES['img'.$i]['name'] != '') ?  '/sheekstore/e_commerce/img/product-img/'.$libelle.''.$i.'.'.$extension: '/sheekstore/e_commerce/img/logo.png';
+    $imgs[$i] = (isset($_FILES['img'.$i]) && $_FILES['img'.$i]['name'] != '') ?  preg_replace('/ /', '', '/sheekstore/e_commerce/img/product-img/'.$libelle.''.$i.'.'.$extension) : '/sheekstore/e_commerce/img/noimg.png';
     }
 }
 
@@ -54,9 +54,9 @@ else if(isset($action) && $action == 'addproduct'){
   $id_Categorie = 1;
   $stock = 0;
   $prix = 0;
-  $img1 = '/sheekstore/e_commerce/img/logo.png';
-  $img2 = '/sheekstore/e_commerce/img/logo.png';
-  $img3 = '/sheekstore/e_commerce/img/logo.png';
+  $img1 = '/sheekstore/e_commerce/img/noimg.png';
+  $img2 = '/sheekstore/e_commerce/img/noimg.png';
+  $img3 = '/sheekstore/e_commerce/img/noimg.png';
 
 }
 

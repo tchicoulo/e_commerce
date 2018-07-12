@@ -107,7 +107,6 @@
 						foreach($ProductsListView as $product) {
                             echo '<!-- Single Product -->
                             <div class="col-12 col-sm-6 col-lg-4">
-							 <form class="form-product" action="/sheekstore/e_commerce/index.php/cart" method="post">
                                 <div class="single-product-wrapper">
                                     <!-- Product Image -->
                                     <div class="product-img">
@@ -129,15 +128,22 @@
                                         <!-- Hover Content -->
                                         <div class="hover-content">
                                             <!-- Add to Cart -->
-                                            <div class="add-to-cart-btn">
-											<input name="id_product" type="hidden" value="'.$product['id'].'">
-                                          		<button type="submit" class="btn essence-btn">Ajouter au panier</button>
-                                                <button type="submit" class="btn essence-btn">+ de détails</button>
-                                            </div>
+                                                <div class="add-to-cart-btn">
+                                                    <form class="form-product" action="/sheekstore/e_commerce/index.php/cart" method="post">
+											         <input name="id_product" type="hidden" value="'.$product['id'].'">
+                                          		    <button type="submit" class="btn essence-btn">Ajouter au panier</button>
+                                                </div>
+                                                    </form>
+                                               <div class="add-to-cart-btn">
+                                                    <form class="form-product" action="/sheekstore/e_commerce/index.php/product_detail" method="get">
+                                                     <input name="product" type="hidden" value="'.$product['id'].'">
+                                                    <button type="submit" class="btn essence-btn">Details</button>
+                                                </div>
+                                                    </form>
                                         </div>
                                     </div>
                                 </div>
-								</form>
+								
                             </div>';
                            }
                         ?>
