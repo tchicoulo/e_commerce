@@ -24,7 +24,7 @@
 
 
     //echo $_GET['product'];
-    
+
     echo '
 
 
@@ -47,7 +47,7 @@
             <a href="cart.html">
                 <h2>'.$product->libelle().'</h2>
             </a>
-            <p class="product-price">'.$product->prix().'</p>
+            <p class="product-price">'.$product->prix().'€</p>
             <p class="product-desc">'.$product->description().'</p>
 
             <!-- Form -->

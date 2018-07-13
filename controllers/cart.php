@@ -53,6 +53,7 @@ if(isset($_POST["remove_id"]) && isset($_SESSION["products"]))
   }
 }
 
+// Empty cart
 if(isset($action) && $action == 'emptycart' && isset($_SESSION["products"]))
 {
   $_SESSION['total'] = 0;

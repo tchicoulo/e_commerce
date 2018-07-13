@@ -91,6 +91,15 @@ public function getAll(){
 	return $cartslist;
 }
 
+public function getByOrder($id_commande){
+	$db=parent::connect();
+	$sql= "SELECT * FROM panier INNER JOIN produit ON panier.id_produit = produit.id WHERE id_commande=".$id_commande;
+	$query= $db -> prepare ($sql);
+	$query -> execute ();
+	$cartslist= $query -> fetchAll();
+	return $cartslist;
+}
+
 	//Enregistre les données par rapport a un Id ou un nom de produit
 public function get($data){
 
@@ -170,7 +179,7 @@ public function get($data){
 	}
 
 	public function setQuantite( $quantite ){
-		if(is_string($quantite)){
+		if(is_int($quantite)){
 			$this->quantite = $quantite;
 		}
 	}
