@@ -6,15 +6,15 @@ require_once "models/cart.php";
 
 if(isset($_POST['order'])){
 
-	$id_client   = (isset(htmlspecialchars($_POST['id_client'])))  ?  $_POST['id_client'] : 0;
-	$nom_client  = (isset(htmlspecialchars($_POST['login'])))      ?  $_POST['login'] : 'default';
-	$password    = (isset(htmlspecialchars($_POST['password'])))   ?  password_hash($_POST['password'], PASSWORD_DEFAULT) : '';
-	$prenom      = (isset(htmlspecialchars($_POST['prenom'])))     ?  $_POST['prenom'] : 'default';
-	$nom         = (isset(htmlspecialchars($_POST['nom'])))        ?  $_POST['nom'] : 'default';
-	$adresse     = (isset(htmlspecialchars($_POST['adresse'])))    ?  $_POST['adresse'] : 'default';
-	$telephone   = (isset(htmlspecialchars($_POST['telephone'])))  ?  $_POST['telephone'] : '';
-	$email       = (isset(htmlspecialchars($_POST['email'])))      ?  $_POST['email'] : 'default';
-	$admin       = (isset(htmlspecialchars($_SESSION['admin'])))   ?  $_SESSION['admin'] : 'no';
+	$id_client   = (isset($_POST['id_client']))  ?  $_POST['id_client'] : 0;
+	$nom_client  = (isset($_POST['login']))      ?  $_POST['login'] : 'default';
+	$password    = (isset($_POST['password']))   ?  password_hash($_POST['password'], PASSWORD_DEFAULT) : '';
+	$prenom      = (isset($_POST['prenom']))     ?  $_POST['prenom'] : 'default';
+	$nom         = (isset($_POST['nom']))        ?  $_POST['nom'] : 'default';
+	$adresse     = (isset($_POST['adresse']))    ?  $_POST['adresse'] : 'default';
+	$telephone   = (isset($_POST['telephone']))  ?  $_POST['telephone'] : '';
+	$email       = (isset($_POST['email']))      ?  $_POST['email'] : 'default';
+	$admin       = (isset($_SESSION['admin']))   ?  $_SESSION['admin'] : 'no';
 	$date_commande = date("Y-m-d H:i:s");
 
 	// ----- Objects creation -----//
