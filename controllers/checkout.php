@@ -18,10 +18,10 @@ if(isset($_POST['order'])){
 	$date_commande = date("Y-m-d H:i:s");
 
 	// ----- Objects creation -----//
-	$client = new ClientsModel(['id' => $id_client ,'nom_client' => $nom_client, 'mot_de_passe' => $password, 'civilite' => '', 'prenom' => $prenom, 'nom' => $nom, 'adresse' => $adresse, 'telephone' => $telephone,'email' => $email,
+	$client = new ClientsModel(['id' => (int)$id_client ,'nom_client' => $nom_client, 'mot_de_passe' => $password, 'civilite' => '', 'prenom' => $prenom, 'nom' => $nom, 'adresse' => $adresse, 'telephone' => $telephone,'email' => $email,
 	'admin' => $admin]);
 
-	$order = new OrdersModel(['id' => 0 , 'date_commande' => $date_commande, 'id_client' => $id_client]);
+	$order = new OrdersModel(['id' => 0 , 'date_commande' => $date_commande, 'id_client' => (int)$id_client]);
 
 	$cart = new CartsModel(['id' => 0 ,'id_commande' => 0, 'id_produit' => 0, 'quantite' => 0]);
 
@@ -42,7 +42,7 @@ if(isset($_POST['order'])){
 	if(isset($_SESSION['products']) && count($_SESSION['products']) > 0){
 		//---Order addition to database ---//
 		$result = $order->create($order);
-		$order = $order->get($date_commande, (int)$id_client); // getting order id
+		$order = $order->getByDate($date_commande); // getting order id
 
 		if($order){
 			//---Cart articles addition to database ---//

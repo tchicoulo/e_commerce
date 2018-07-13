@@ -35,137 +35,169 @@ class OrdersModel extends Model {
 		$result = $query -> execute ();
 
 		if($result){	// Si $result est vrai alors la requête c'est bien déroulé
-			return '<p class="green">La commande '.$order->date_commande().' à bien été ajouté.</p>';
-		}
-		else{
-			return '<p class="red">Echec lors de l\'ajout de la commande '.$order->date_commande().'.</p>';
-		}
+		return '<p class="green">La commande '.$order->date_commande().' à bien été ajouté.</p>';
 	}
+	else{
+		return '<p class="red">Echec lors de l\'ajout de la commande '.$order->date_commande().'.</p>';
+	}
+}
 
 	//UPDATE
-	public function update(OrdersModel $order){
+public function update(OrdersModel $order){
 
-		$db=parent::connect();
+	$db=parent::connect();
 
-		$sql= "UPDATE commande SET date_commande = :date_commande, id_client = :id_client WHERE id=".$order->id();
-		$query= $db -> prepare ($sql);
-		$query->bindValue(':date_commande', $order->date_commande());
-		$query->bindValue(':id_client', $order->id_client());
+	$sql= "UPDATE commande SET date_commande = :date_commande, id_client = :id_client WHERE id=".$order->id();
+	$query= $db -> prepare ($sql);
+	$query->bindValue(':date_commande', $order->date_commande());
+	$query->bindValue(':id_client', $order->id_client());
 
-		$result = $query -> execute ();
+	$result = $query -> execute ();
 
 		if($result){	// Si $result est vrai alors la requête s'est bien déroulée
-			return '<p class="green">La commande '.$order->date_commande().' à bien été modifiée.</p>';
-		}
-		else{
-			return '<p class="red">Echec de la modification de la commande '.$order->date_commande().'</p>';
-		}
+		return '<p class="green">La commande '.$order->date_commande().' à bien été modifiée.</p>';
 	}
+	else{
+		return '<p class="red">Echec de la modification de la commande '.$order->date_commande().'</p>';
+	}
+}
 
 	// DELETE
-	public function delete($data){
+public function delete($data){
 
-		$db=parent::connect();
+	$db=parent::connect();
 
-		if(is_int($data)){
-			$sql= "DELETE FROM commande WHERE id = ".$data;
-			$query= $db -> prepare ($sql);
-			$query -> execute ();
+	if(is_int($data)){
+		$sql= "DELETE FROM commande WHERE id = ".$data;
+		$query= $db -> prepare ($sql);
+		$query -> execute ();
 
-			return '<p class="green">La commande à bien été supprimée.</p>';
-		}
-
-		return '<p class="red">Echec de la suppression de la commande.</p>';
+		return '<p class="green">La commande à bien été supprimée.</p>';
 	}
 
+	return '<p class="red">Echec de la suppression de la commande.</p>';
+}
+
 	// SELECT *
-	public function getAll(){
-		$db=parent::connect();
-		$sql= "SELECT commande.*, client.nom_client  FROM commande INNER JOIN client ON commande.id_client = client.id ORDER BY commande.date_commande DESC";
+public function getAll(){
+	$db=parent::connect();
+	$sql= "SELECT commande.*, client.nom_client  FROM commande INNER JOIN client ON commande.id_client = client.id ORDER BY commande.date_commande DESC";
+	$query= $db -> prepare ($sql);
+	$query -> execute ();
+	$orderslist= $query -> fetchAll();
+	return $orderslist;
+}
+
+	//Enregistre les données par rapport a un Id ou une commande
+public function get($id){
+
+	$db=parent::connect();
+
+	if(is_int($id)){
+		$sql= "SELECT * FROM commande WHERE id = :id";
 		$query= $db -> prepare ($sql);
+		$query->bindValue(':id', $id);
+	}
+	else{
+			// Si le paramètre est incorrect on retourne false
+		return false;
+	}
+
+	$query -> execute ();
+	$result = $query->fetch();
+	if($result){
+		$this->setId($result['id']);
+		$this->setDate_commande($result['date_commande']);
+		$this->setId_client($result['id_client']);
+
+		return $this;
+	}
+	else{
+		return false;
+	}
+}
+
+	//Enregistre les données par rapport a un Id ou une commande
+public function getByDate($date_commande){
+
+	$db=parent::connect();
+
+	
+		$sql= "SELECT * FROM commande WHERE date_commande = :date_commande";
+		$query= $db -> prepare ($sql);
+		$query->bindValue(':date_commande', $date_commande);
+
+	$query -> execute ();
+	$result = $query->fetch();
+	if($result){
+		$this->setId($result['id']);
+		$this->setDate_commande($result['date_commande']);
+		$this->setId_client($result['id_client']);
+
+		return $this;
+	}
+	else{
+		return false;
+	}
+}
+
+public function getByCustomer($id_client){
+
+	$db=parent::connect();
+	if(is_int($id_client)){
+		$sql= "SELECT commande.*, client.nom_client  FROM commande INNER JOIN client ON commande.id_client = client.id WHERE id_client = :id_client ORDER BY commande.date_commande DESC";
+		$query= $db -> prepare ($sql);
+		$query->bindValue(':id_client', $id_client);
 		$query -> execute ();
 		$orderslist= $query -> fetchAll();
 		return $orderslist;
 	}
+}
 
-	//Enregistre les données par rapport a un Id ou une commande
-	public function get($date_commande, $id){
 
-		$db=parent::connect();
+public function nbArticles($id_commande){
+	$db=parent::connect();
+	$nbArtciles = 0;
 
-		if($date_commande == 0 && is_int($id)){
-			$sql= "SELECT * FROM commande WHERE id = :id";
-			$query= $db -> prepare ($sql);
-			$query->bindValue(':id', $id);
-		}
-		// Si in entier est en paramètre on récupère par rapport à l'Id
-		elseif(is_int($id)){
-			$sql= "SELECT * FROM commande WHERE date_commande = :date_commande AND id_client = :id_client";
-			$query= $db -> prepare ($sql);
-			$query->bindValue(':id_client', $id);
-			$query->bindValue(':date_commande', $date_commande);
-		}
-		else{
-			// Si le paramètre est incorrect on retourne false
-			return false;
-		}
+	if($id_commande > 0){
+		$sql = "SELECT * FROM panier WHERE id_commande ='".$id_commande."'";
+		$query = $db->prepare($sql);
+		$query ->execute();
+		$articlesList = $query->fetchAll();
 
-		$query -> execute ();
-		$result = $query->fetch();
-		if($result){
-			$this->setId($result['id']);
-			$this->setDate_commande($result['date_commande']);
-			$this->setId_client($result['id_client']);
 
-			return $this;
-		}
-		else{
-			return false;
+		foreach($articlesList as $article){
+			$nbArtciles += $article['quantite'];
 		}
 	}
-	public function nbArticles($id_commande){
-		$db=parent::connect();
-		$nbArtciles = 0;
+	return $nbArtciles;
+}
 
-		if($id_commande > 0){
-			$sql = "SELECT * FROM panier WHERE id_commande ='".$id_commande."'";
-			$query = $db->prepare($sql);
-			$query ->execute();
-			$articlesList = $query->fetchAll();
+public function totalPrice($id_commande){
+	$db=parent::connect();
+	$totalPrice = 0;
 
+	if($id_commande > 0){
+		$sql = "SELECT * FROM panier INNER JOIN produit ON panier.id_produit = produit.id WHERE id_commande ='".$id_commande."'";
+		$query = $db->prepare($sql);
+		$query ->execute();
+		$articlesList = $query->fetchAll();
 
-			foreach($articlesList as $article){
-				$nbArtciles += $article['quantite'];
-			}
+		foreach($articlesList as $article){
+			$totalPrice += ($article['prix']*$article['quantite']);
 		}
-		return $nbArtciles;
 	}
+	return $totalPrice;
+}
 
-	public function totalPrice($id_commande){
-		$db=parent::connect();
-		$totalPrice = 0;
+public function exists($data){
+	$db=parent::connect();
 
-		if($id_commande > 0){
-			$sql = "SELECT * FROM panier INNER JOIN produit ON panier.id_produit = produit.id WHERE id_commande ='".$id_commande."'";
-			$query = $db->prepare($sql);
-			$query ->execute();
-			$articlesList = $query->fetchAll();
-
-			foreach($articlesList as $article){
-				$totalPrice += ($article['prix']*$article['quantite']);
-			}
-		}
-		return $totalPrice;
-	}
-
-	public function exists($data){
-		$db=parent::connect();
-
-		if(is_string($data)){
-			$sql = "SELECT * FROM order WHERE date_commande ='".$data."'";
-			$query = $db->prepare($sql);
-			$query ->execute();
-			$listOrder = $query->fetchAll();
+	if(is_string($data)){
+		$sql = "SELECT * FROM order WHERE date_commande ='".$data."'";
+		$query = $db->prepare($sql);
+		$query ->execute();
+		$listOrder = $query->fetchAll();
 
 			return !empty($listOrder); // Retourne Vrai si une commande avec le nom $data existe
 		}
@@ -192,7 +224,7 @@ class OrdersModel extends Model {
 		}
 	}
 	public function setId_client( $id_client ){
-		if(is_string($id_client)){
+		if(is_int($id_client)){
 			$this->id_client = $id_client;
 		}
 	}
