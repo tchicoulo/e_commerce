@@ -51,7 +51,7 @@
             <p class="product-desc">'.$product->description().'</p>
 
             <!-- Form -->
-            <form class="cart-form clearfix" method="post">
+            <form class="cart-form clearfix" action="/sheekstore/e_commerce/index.php/cart" method="post">
                 <!-- Select Box -->
                 <div class="select-box d-flex mt-50 mb-30">
                     <select name="select" id="productSize" class="mr-5">
@@ -70,6 +70,7 @@
                 <!-- Cart & Favourite Box -->
                 <div class="cart-fav-box d-flex align-items-center">
                     <!-- Cart -->
+                    <input name="id_product" type="hidden" value="'.$product['id'].'">
                     <button type="submit" name="addtocart" value="5" class="btn essence-btn">Ajouter au Panier</button>
                     <!-- Favourite -->
                     <div class="product-favourite ml-4">

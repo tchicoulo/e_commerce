@@ -56,6 +56,7 @@ require_once "navbar.php";
             echo '<h2>Commandes</h2>
             <table class="table table-striped table-sm">
             <tr>
+              <th>Id</th>
               <th>Date de la commande</th>
               <th>Nombres d\'articles</th>
               <th>Prix total</th>
@@ -63,6 +64,7 @@ require_once "navbar.php";
             </tr>';
             foreach($orderList as $order){
               echo '<tr>
+                <th>'.$order['id'].'</th>
                 <th>'.$order['date_commande'].'</th>
                 <th>'.$orders->nbArticles($order['id']).'</th>
                 <th>'.$orders->totalPrice($order['id']).'€</th>
@@ -73,6 +75,7 @@ require_once "navbar.php";
 
               foreach($articlesList as $article){
                 echo '<tr>
+                <td></td>
                 <td>'.$article['libelle'].'</td>
                 <td>'.$article['quantite'].'</td>
                 <td>'.$article['prix']*$article['quantite'].'€</td>
