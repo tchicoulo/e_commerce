@@ -1,4 +1,5 @@
 <?php
+require_once "models/products.php";
 require_once "models/orders.php";
 require_once "models/clients.php";
 require_once "models/cart.php";
@@ -13,29 +14,64 @@ if(isset($_POST['order'])){
 	$adresse = (isset($_POST['adresse'])) ?  $_POST['adresse'] : 'default';
 	$telephone = (isset($_POST['telephone'])) ?  $_POST['telephone'] : '';
 	$email = (isset($_POST['email'])) ?  $_POST['email'] : 'default';
-
+	$admin = (isset($_SESSION['admin'])) ?  $_SESSION['admin'] : 'no';
+	$date_commande = date("Y-m-d H:i:s");
 
 	// ----- Objects creation -----//
-	$client = new ClientsModel(['id' => $id_client ,'nom_client' => $nom_client, 'mot_de_passe' => $password, 'civilite' => '', 'prenom' => $prenom, 'nom' => $nom, 'adresse' => $adresse, 'telephone' => $telephone,'email' => $email, 'admin' => '']);
+	$client = new ClientsModel(['id' => $id_client ,'nom_client' => $nom_client, 'mot_de_passe' => $password, 'civilite' => '', 'prenom' => $prenom, 'nom' => $nom, 'adresse' => $adresse, 'telephone' => $telephone,'email' => $email,
+	'admin' => $admin]);
 
-	$order = new OrdersModel(['id' => 0 , 'date_commande' => date('Y-m-d'), 'id_client' => $id_client]);
+	$order = new OrdersModel(['id' => 0 , 'date_commande' => $date_commande, 'id_client' => $id_client]);
 
 	$cart = new CartsModel(['id' => 0 ,'id_commande' => 0, 'id_produit' => 0, 'quantite' => 0]);
 
 
 	//---Update customer infos ----//
-    $result = $client->update($client);
+	$result = $client->update($client);
 
-    //---Order addition to database ---//
-    $result = $order->create($order);
+	// On re-définis les variables de session de l'utilisateur
+	$_SESSION['id_client'] = $client->id();
+	$_SESSION['login'] = $client->nom_client();
+	$_SESSION['email'] = $client->email();
+	$_SESSION['admin'] = $client->admin();
+	$_SESSION['adresse'] = $client->adresse();
+	$_SESSION['nom'] = $client->nom();
+	$_SESSION['prenom'] = $client->prenom();
+	$_SESSION['telephone'] = $client->telephone();
 
-    //---Cart articles addition to database ---//
-    if(isset($_SESSION['products'])){
+	if(isset($_SESSION['products']) && count($_SESSION['products']) > 0){
+		//---Order addition to database ---//
+		$result = $order->create($order);
+		$order = $order->get($date_commande, (int)$id_client); // getting order id
 
-    	foreach($_SESSION['products'] as $product){
-    		
-    	}
-    }
+		if($order){
+			//---Cart articles addition to database ---//
+
+
+			foreach($_SESSION['products'] as $product){
+				$cart->setId_commande((int)$order->id());
+				$cart->setId_produit((int)$product['id']);
+				$cart->setQuantite((int)$product['quantity']);
+
+				$cart->create($cart);
+			}
+
+			$checkoutList = $_SESSION["products"]; // saving cart list
+
+			// When cart addition to db is done we emty the cart
+			$_SESSION['total'] = 0;
+			foreach($_SESSION["products"] as $product){
+				unset($_SESSION["products"][$product['id']]);
+			}
+
+		}
+		else{
+			$result = '<p class="red"> Erreur lors de l\'ajout de la commande</p>';
+		}
+	}
+	else{
+		$result = '<p class="red">Votre panier est vide, impossible d\'ajouter la commande</p>';
+	}
 }
 
 

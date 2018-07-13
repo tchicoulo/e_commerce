@@ -52,7 +52,7 @@ class OrdersModel extends Model {
 		$query->bindValue(':date_commande', $order->date_commande());
 		$query->bindValue(':id_client', $order->id_client());
 
-    $result = $query -> execute ();
+		$result = $query -> execute ();
 
 		if($result){	// Si $result est vrai alors la requête s'est bien déroulée
 			return '<p class="green">La commande '.$order->date_commande().' à bien été modifiée.</p>';
@@ -68,7 +68,7 @@ class OrdersModel extends Model {
 		$db=parent::connect();
 
 		if(is_int($data)){
-			$sql= "DELETE FROM order WHERE id = ".$data;
+			$sql= "DELETE FROM commande WHERE id = ".$data;
 			$query= $db -> prepare ($sql);
 			$query -> execute ();
 
@@ -81,7 +81,7 @@ class OrdersModel extends Model {
 	// SELECT *
 	public function getAll(){
 		$db=parent::connect();
-		$sql= "SELECT * FROM commande INNER JOIN client ON commande.id_client = client.id";
+		$sql= "SELECT commande.*, client.nom_client  FROM commande INNER JOIN client ON commande.id_client = client.id ORDER BY commande.date_commande DESC";
 		$query= $db -> prepare ($sql);
 		$query -> execute ();
 		$orderslist= $query -> fetchAll();
@@ -89,21 +89,21 @@ class OrdersModel extends Model {
 	}
 
 	//Enregistre les données par rapport a un Id ou une commande
-	public function get($data){
+	public function get($date_commande, $id){
 
 		$db=parent::connect();
-		// Si in entier est en paramètre on récupère par rapport à l'Id
-		if(is_int($data)){
+
+		if($date_commande == 0 && is_int($id)){
 			$sql= "SELECT * FROM commande WHERE id = :id";
 			$query= $db -> prepare ($sql);
-			$query->bindValue(':id', $data);
+			$query->bindValue(':id', $id);
 		}
-
-		// Si une chaine de charactères est en paramètre on récupère par rapport a la commande
-		else if (is_string($data)){
-			$sql= "SELECT * FROM commande WHERE date_commande = :date_commande";
+		// Si in entier est en paramètre on récupère par rapport à l'Id
+		elseif(is_int($id)){
+			$sql= "SELECT * FROM commande WHERE date_commande = :date_commande AND id_client = :id_client";
 			$query= $db -> prepare ($sql);
-			$query->bindValue(':date_commande', $data);
+			$query->bindValue(':id_client', $id);
+			$query->bindValue(':date_commande', $date_commande);
 		}
 		else{
 			// Si le paramètre est incorrect on retourne false
@@ -112,13 +112,50 @@ class OrdersModel extends Model {
 
 		$query -> execute ();
 		$result = $query->fetch();
-
+		if($result){
 			$this->setId($result['id']);
 			$this->setDate_commande($result['date_commande']);
 			$this->setId_client($result['id_client']);
 
 			return $this;
+		}
+		else{
+			return false;
+		}
+	}
+	public function nbArticles($id_commande){
+		$db=parent::connect();
+		$nbArtciles = 0;
 
+		if($id_commande > 0){
+			$sql = "SELECT * FROM panier WHERE id_commande ='".$id_commande."'";
+			$query = $db->prepare($sql);
+			$query ->execute();
+			$articlesList = $query->fetchAll();
+
+
+			foreach($articlesList as $article){
+				$nbArtciles += $article['quantite'];
+			}
+		}
+		return $nbArtciles;
+	}
+
+	public function totalPrice($id_commande){
+		$db=parent::connect();
+		$totalPrice = 0;
+
+		if($id_commande > 0){
+			$sql = "SELECT * FROM panier INNER JOIN produit ON panier.id_produit = produit.id WHERE id_commande ='".$id_commande."'";
+			$query = $db->prepare($sql);
+			$query ->execute();
+			$articlesList = $query->fetchAll();
+
+			foreach($articlesList as $article){
+				$totalPrice += ($article['prix']*$article['quantite']);
+			}
+		}
+		return $totalPrice;
 	}
 
 	public function exists($data){
@@ -160,5 +197,5 @@ class OrdersModel extends Model {
 		}
 	}
 
-	}
+}
 ?>

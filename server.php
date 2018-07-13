@@ -1,6 +1,9 @@
 <?php
 require_once 'routes.php';
 
+// Default timezone setup
+date_default_timezone_set('Europe/Paris');
+
 // getting server infos
 $app= __DIR__;
 $url = $_SERVER['REQUEST_URI'];

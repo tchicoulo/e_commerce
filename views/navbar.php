@@ -44,6 +44,7 @@
             </li>
             <li><a href="#">News</a></li>
             <li><a href="#">Contact</a></li>
+            <?php if(isset($result)){ echo '<li>'.$result.'</li>'; } // Affichage du message de confirmation / erreur ?>
           </ul>
         </div>
         <!-- Nav End -->
@@ -53,7 +54,6 @@
     <!-- Header Meta Data -->
     <div class="header-meta d-flex clearfix justify-content-end">
 
-      <?php if(isset($result)){ echo $result; } // Affichage du message de confirmation / erreur ?>
 
       <!-- Search Area -->
       <div class="search-area">
@@ -137,7 +137,7 @@
           <div class="dropdown-menu">
             <?php
             if(isset($_SESSION['email'])){
-              echo '  <a href="#">'.$_SESSION['login'].'</a>
+              echo '  <a href="/sheekstore/e_commerce/index.php/profile">'.$_SESSION['login'].'</a>
               <a href="/sheekstore/e_commerce/index.php/logout">LogOut</a>';
 
               if($_SESSION['admin'] == 'yes'){

@@ -10,7 +10,7 @@ if(!isset($result)){
       <div class="row h-100 align-items-center">
         <div class="col-12">
           <div class="page-title text-center">
-            <h2>Validation de la commande</h2>
+            <h2>Checkout</h2>
           </div>
         </div>
       </div>
@@ -84,8 +84,8 @@ if(!isset($result)){
                     <label class="custom-control-label" for="customCheck1">Utiliser la même adresse comme adresse de livraison</label>
                   </div>
                   <div class="custom-control custom-checkbox d-block mb-2">
-                    <input type="checkbox" class="custom-control-input" id="customCheck2">
-                    <label class="custom-control-label" for="customCheck2">Créer un compte</label>
+                    <input type="checkbox" class="custom-control-input" id="customCheck2" required>
+                    <label class="custom-control-label" for="customCheck2">Accepter les conditions d'utilisation</label>
                   </div>
                 </div>
               </div>
@@ -147,8 +147,7 @@ if(!isset($result)){
                   </div>
                 </div>
               </div>
-              <?php echo $_SESSION['id_client']; ?>
-               <input type="hidden" name="login" value="<?php if(isset($_SESSION['login'])){ echo $_SESSION['login']; } ?>">
+              <input type="hidden" name="login" value="<?php if(isset($_SESSION['login'])){ echo $_SESSION['login']; } ?>">
               <input type="hidden" name="id_client" value="<?php if(isset($_SESSION['id_client'])){ echo $_SESSION['id_client']; } ?>">
               <input type="submit" class="btn essence-btn" value="Passer la commande" name="order">
             </form>
@@ -157,16 +156,49 @@ if(!isset($result)){
       </div>
     </div>
   </div>
-  
-  <?php 
-} 
-else{
-  echo '<h3>Votre commande a été validée</h3>';
-}
-?>
-<!-- ##### Checkout Area End ##### -->
 
-<!-- ##### Footer ##### -->
-<?php
-require_once "views/footer.php"
-?>
+  <?php
+}
+else{ ?>
+  <div class="checkout_area section-padding-80">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 ">
+          <div class="order-details-confirmation">
+
+            <div class="cart-page-heading">
+              <h3>Votre commande a été validée</h3>
+              <p>Récapitulatif</p>
+            </div>
+
+            <ul class="order-details-form mb-4">
+              <li><h6><span>Produit</span> <span>Prix</span></h6></li>
+              <?php
+              if(isset($checkoutList) && count($checkoutList) != 0){
+                $subtotal = 0;
+                foreach ($checkoutList as $product){
+                  echo '<li><span>'.$product['product_name'].' × '.$product['quantity'].'</span><span>'.$product['product_price']*$product['quantity'].'€</span></li>';
+                  $subtotal += ($product['product_price']*$product['quantity']);
+                }
+              }
+              if(!isset($subtotal)){
+                $subtotal = 0;
+              }
+              echo '<li><h6><span>Sous-total</span> <span>'.$subtotal.'€</span></h6></li>
+              <li><h6><span>Frais de livraison</span> <span>Gratuit</span></h6></li>
+              <li><h5><span>Total</span> <span>'.$subtotal.'€</span></h5></li>';
+              ?>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php
+  }
+  ?>
+  <!-- ##### Checkout Area End ##### -->
+
+  <!-- ##### Footer ##### -->
+  <?php
+  require_once "views/footer.php"
+  ?>

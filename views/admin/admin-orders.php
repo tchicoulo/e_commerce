@@ -27,9 +27,9 @@ if($action == 'showorders' || $action == 'deleteorder'){
     <td>'.$order['id'].'</td>
     <td><a href="/sheekstore/e_commerce/index.php/admin/editorder/'.$order['id'].'">'.$order['date_commande'].'</a></td>
     <td>'.$order['nom_client'].'</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>'.$orderAdmin->nbArticles($order['id']).'</td>
+    <td>'.$orderAdmin->totalPrice($order['id']).'€</td>
+    <td>En cours de traitement</td>
     <form method="post">
     <td><input type="image" formaction="/sheekstore/e_commerce/index.php/admin/editorder/'.$order['id'].'" src="/sheekstore/e_commerce/img/edit.png" alt="Icone d\'édition" class="icon" /></td>
     <td><input type="image" formaction="/sheekstore/e_commerce/index.php/admin/deleteorder/'.$order['id'].'" src="/sheekstore/e_commerce/img/delete.png" alt="Icone de suppression" class="icon" /></td>
