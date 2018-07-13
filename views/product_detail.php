@@ -26,13 +26,7 @@
     <?php // boucle à ajouter
 
 
-<<<<<<< HEAD
-    //echo $_GET['product'];
 
-=======
-   
-    
->>>>>>> 820f1eb50fa359cb82002e99664aa97fdea7b0dd
     echo '
 
 
@@ -43,20 +37,20 @@
         <!-- Single Product Thumb -->
         <div class="single_product_thumb clearfix">
             <div class="product_thumbnail_slides owl-carousel">
-                <img src="'.$product->img1().'" alt="">
-                <img src="'.$product->img2().'" alt="">
-                <img src="'.$product->img3().'" alt="">
+                <img src="'.$product_detail->img1().'" alt="">
+                <img src="'.$product_detail->img2().'" alt="">
+                <img src="'.$product_detail->img3().'" alt="">
             </div>
         </div>
 
         <!-- Single Product Description -->
         <div class="single_product_desc clearfix">
-            <span>'.$product->marque().'</span>
+            <span>'.$product_detail->marque().'</span>
             <a href="cart.html">
-                <h2>'.$product->libelle().'</h2>
+                <h2>'.$product_detail->libelle().'</h2>
             </a>
-            <p class="product-price">'.$product->prix().'€</p>
-            <p class="product-desc">'.$product->description().'</p>
+            <p class="product-price">'.$product_detail->prix().'€</p>
+            <p class="product-desc">'.$product_detail->description().'</p>
 
             <!-- Form -->
             <form class="cart-form clearfix" action="/sheekstore/e_commerce/index.php/cart" method="post">
@@ -78,7 +72,7 @@
                 <!-- Cart & Favourite Box -->
                 <div class="cart-fav-box d-flex align-items-center">
                     <!-- Cart -->
-                    <input name="id_product" type="hidden" value="'.$product['id'].'">
+                    <input name="id_product" type="hidden" value="'.$product_detail->id().'">
                     <button type="submit" name="addtocart" value="5" class="btn essence-btn">Ajouter au Panier</button>
                     <!-- Favourite -->
                     <div class="product-favourite ml-4">

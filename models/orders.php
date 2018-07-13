@@ -89,14 +89,20 @@ class OrdersModel extends Model {
 	}
 
 	//Enregistre les données par rapport a un Id ou une commande
-	public function get($date_commande, $id_client){
+	public function get($date_commande, $id){
 
 		$db=parent::connect();
+
+		if($date_commande == 0 && is_int($id)){
+			$sql= "SELECT * FROM commande WHERE id = :id";
+			$query= $db -> prepare ($sql);
+			$query->bindValue(':id', $id);
+		}
 		// Si in entier est en paramètre on récupère par rapport à l'Id
-		if(is_int($id_client)){
+		elseif(is_int($id)){
 			$sql= "SELECT * FROM commande WHERE date_commande = :date_commande AND id_client = :id_client";
 			$query= $db -> prepare ($sql);
-			$query->bindValue(':id_client', $id_client);
+			$query->bindValue(':id_client', $id);
 			$query->bindValue(':date_commande', $date_commande);
 		}
 		else{

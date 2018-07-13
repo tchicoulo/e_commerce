@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 06 juil. 2018 à 08:45
+-- Généré le :  ven. 13 juil. 2018 à 09:39
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -33,16 +33,17 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_categorie` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`id`, `nom_categorie`) VALUES
-(1, 'Vetements et accessoires'),
+(1, 'Vetements'),
 (2, 'Jeux'),
-(4, 'Goodies');
+(4, 'Goodies'),
+(7, 'Accessoires de Jeux');
 
 -- --------------------------------------------------------
 
@@ -58,21 +59,24 @@ CREATE TABLE IF NOT EXISTS `client` (
   `civilite` varchar(10) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `nom` varchar(50) NOT NULL,
+  `pays` varchar(100) DEFAULT NULL,
   `adresse` varchar(250) NOT NULL,
+  `code_postal` int(11) DEFAULT NULL,
+  `ville` varchar(255) DEFAULT NULL,
   `telephone` varchar(20) NOT NULL,
   `email` varchar(250) NOT NULL,
   `admin` enum('yes','no') NOT NULL DEFAULT 'no',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`id`, `nom_client`, `mot_de_passe`, `civilite`, `prenom`, `nom`, `adresse`, `telephone`, `email`, `admin`) VALUES
-(13, 'GuiGui', '$2y$10$sq2utqjgcy5/vshVZXiy9eOz/Kf2KhiIa/Yuh8FBKmmeHTkkpwqky', '', 'Guillaume', 'Groult', '', '', 'guigui@gmail.com', 'yes'),
-(14, 'Florian', '$2y$10$6Kn49DD1ZK6YN4QQOQ7VL.uV9zMxvFZ0kVqdn6Q4JXX.GP3d4GdAa', '', '', '', '', '', 'flo@flo.fr', 'no'),
-(15, 'Steven', '$2y$10$bcqv.3iDP89w/ioJ7/4ny.46YtbmjbuChdSAy8VSPQCcibO0ewilu', '', '', '', '', '', 'stev@free.fr', 'no');
+INSERT INTO `client` (`id`, `nom_client`, `mot_de_passe`, `civilite`, `prenom`, `nom`, `pays`, `adresse`, `code_postal`, `ville`, `telephone`, `email`, `admin`) VALUES
+(13, 'GuiGui', '$2y$10$sq2utqjgcy5/vshVZXiy9eOz/Kf2KhiIa/Yuh8FBKmmeHTkkpwqky', '', 'Guillaume', 'Groult', '', 'bbbbbbb', 0, '', '111111', 'guigui@gmail.com', 'yes'),
+(14, 'Florian', '$2y$10$6Kn49DD1ZK6YN4QQOQ7VL.uV9zMxvFZ0kVqdn6Q4JXX.GP3d4GdAa', '', '', '', '', '', 0, '', '', 'flo@flo.fr', 'no'),
+(15, 'Steven', '$2y$10$bcqv.3iDP89w/ioJ7/4ny.46YtbmjbuChdSAy8VSPQCcibO0ewilu', '', '', '', '', '', 0, '', '', 'stev@free.fr', 'no');
 
 -- --------------------------------------------------------
 
@@ -83,21 +87,21 @@ INSERT INTO `client` (`id`, `nom_client`, `mot_de_passe`, `civilite`, `prenom`, 
 DROP TABLE IF EXISTS `commande`;
 CREATE TABLE IF NOT EXISTS `commande` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date_commande` date NOT NULL,
+  `date_commande` datetime NOT NULL,
   `id_client` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_client_fk` (`id_client`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `commande`
 --
 
 INSERT INTO `commande` (`id`, `date_commande`, `id_client`) VALUES
-(1, '2018-07-04', 14),
-(2, '2018-07-04', 13),
-(3, '2018-07-05', 14),
-(7, '2018-07-05', 13);
+(48, '2018-07-13 02:34:37', 13),
+(49, '2018-07-13 10:32:47', 13),
+(51, '2018-07-13 11:16:16', 13),
+(52, '2018-07-13 11:25:34', 13);
 
 -- --------------------------------------------------------
 
@@ -112,9 +116,21 @@ CREATE TABLE IF NOT EXISTS `panier` (
   `id_produit` int(11) NOT NULL,
   `quantite` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `Panier_AK` (`id_produit`),
-  KEY `id_commande_fk` (`id_commande`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `id_commande_fk` (`id_commande`),
+  KEY `id_produit_fk` (`id_produit`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `panier`
+--
+
+INSERT INTO `panier` (`id`, `id_commande`, `id_produit`, `quantite`) VALUES
+(25, 48, 2, 3),
+(26, 49, 2, 2),
+(27, 49, 3, 3),
+(28, 49, 8, 1),
+(29, 51, 2, 1),
+(30, 52, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -136,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `img3` varchar(255) NOT NULL DEFAULT 'img/logo.png',
   PRIMARY KEY (`id`),
   KEY `Produit_Categorie_FK` (`id_Categorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `produit`
@@ -144,8 +160,8 @@ CREATE TABLE IF NOT EXISTS `produit` (
 
 INSERT INTO `produit` (`id`, `libelle`, `marque`, `description`, `id_Categorie`, `stock`, `prix`, `img1`, `img2`, `img3`) VALUES
 (2, 'T-shirt Sheeks L', 'Sheeks', '', 1, 30, 19.99, '/sheekstore/e_commerce/img/logo.png', '/sheekstore/e_commerce/img/logo.png', '/sheekstore/e_commerce/img/logo.png'),
-(3, 'T-Shirt Sheeks M', 'Sheeks', '', 1, 30, 19.99, '/sheekstore/e_commerce/img/product-img/logo.png', '/sheekstore/e_commerce/img/logo.png', '/sheekstore/e_commerce/img/logo.png'),
-(8, 'Overwatch', 'Blizzard', 'Overwatch est un jeu vidÃ©o de tir en vue subjective, en Ã©quipes, en ligne, dÃ©veloppÃ© et publiÃ© par Blizzard Entertainment.', 2, 14, 60, '/sheekstore/e_commerce/img/product-img/overwatch.jpg', '/sheekstore/e_commerce/img/product-img/overwatch2.jpg', '/sheekstore/e_commerce/img/logo.png');
+(3, 'T-Shirt Sheeks M', 'Sheeks', '', 1, 30, 19.99, '/sheekstore/e_commerce/img/logo.png', '/sheekstore/e_commerce/img/logo.png', '/sheekstore/e_commerce/img/logo.png'),
+(8, 'Overwatch', 'Blizzard', 'Overwatch est un jeu vidÃ©o de tir en vue subjective, en Ã©quipes, en ligne, dÃ©veloppÃ© et publiÃ© par Blizzard Entertainment.', 2, 14, 60, '/sheekstore/e_commerce/img/noimg.png', '/sheekstore/e_commerce/img/noimg.png', '/sheekstore/e_commerce/img/noimg.png');
 
 --
 -- Contraintes pour les tables déchargées
@@ -161,8 +177,8 @@ ALTER TABLE `commande`
 -- Contraintes pour la table `panier`
 --
 ALTER TABLE `panier`
-  ADD CONSTRAINT `id_commande_fk` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id`),
-  ADD CONSTRAINT `id_produit_fk` FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id`);
+  ADD CONSTRAINT `id_commande_fk` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_produit_fk` FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `produit`
