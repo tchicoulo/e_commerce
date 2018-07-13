@@ -20,7 +20,7 @@ if(isset($_POST['order'])){
 
 	$order = new OrdersModel(['id' => 0 , 'date_commande' => date('Y-m-d'), 'id_client' => $id_client]);
 
-	$cart = new CartsModel(['id' => 0 ,'id_commande' => 0, 'id_produit' => 0, 'quantite' => 0);
+	$cart = new CartsModel(['id' => 0 ,'id_commande' => 0, 'id_produit' => 0, 'quantite' => 0]);
 
 
 	//---Update customer infos ----//
