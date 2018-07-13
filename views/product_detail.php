@@ -1,6 +1,9 @@
 <?php
     require_once "views/navbar.php";
+
 ?>
+
+
 <body>
 
  <!-- ##### Breadcumb Area Start ##### -->
@@ -23,7 +26,7 @@
     <?php // boucle à ajouter
 
 
-    //echo $_GET['product'];
+   
     
     echo '
 
