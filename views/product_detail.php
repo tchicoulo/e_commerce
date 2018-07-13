@@ -1,6 +1,9 @@
 <?php
     require_once "views/navbar.php";
+
 ?>
+
+
 <body>
 
  <!-- ##### Breadcumb Area Start ##### -->
@@ -23,8 +26,13 @@
     <?php // boucle à ajouter
 
 
+<<<<<<< HEAD
     //echo $_GET['product'];
 
+=======
+   
+    
+>>>>>>> 820f1eb50fa359cb82002e99664aa97fdea7b0dd
     echo '
 
 
