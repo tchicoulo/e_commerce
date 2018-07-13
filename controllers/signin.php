@@ -18,12 +18,12 @@ if(isset($_POST['signin'])){
 	if($client && (password_verify($password, $client->mot_de_passe()))){
 		// On définis les variables de session de l'utilisateur pour le connecter
 		$_SESSION['id_client'] = $client->id();
-		$_SESSION['login'] = $client->nom_client();
-		$_SESSION['email'] = $client->email();
-		$_SESSION['admin'] = $client->admin();
-		$_SESSION['adresse'] = $client->adresse();
-		$_SESSION['nom'] = $client->nom();
-		$_SESSION['prenom'] = $client->prenom();
+		$_SESSION['login']     = $client->nom_client();
+		$_SESSION['email']     = $client->email();
+		$_SESSION['admin']     = $client->admin();
+		$_SESSION['adresse']   = $client->adresse();
+		$_SESSION['nom']       = $client->nom();
+		$_SESSION['prenom']    = $client->prenom();
 		$_SESSION['telephone'] = $client->telephone();
 	}
 

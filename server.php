@@ -12,7 +12,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 $route= new Route();
 
 // getting router infos
-$action = $route->getAction();
-$args = $route->getArgs();
+$action      = $route->getAction();
+$args        = $route->getArgs();
 $controllers = $route->getController();  // this function include the corresponding controller
 ?>

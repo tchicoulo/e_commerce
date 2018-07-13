@@ -6,7 +6,7 @@ require_once "models/cart.php";
 
 if(isset($_POST['order'])){
 
-	$id_client   = (isset($_POST['id_client']))  ?  $_POST['id_client'] : 0;
+	$id_client   = (isset($_SESSION['id_client']))  ?  $_POST['id_client'] : 0;
 	$nom_client  = (isset($_POST['login']))      ?  $_POST['login'] : 'default';
 	$password    = (isset($_POST['password']))   ?  password_hash($_POST['password'], PASSWORD_DEFAULT) : '';
 	$prenom      = (isset($_POST['prenom']))     ?  $_POST['prenom'] : 'default';
